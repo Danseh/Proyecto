@@ -20,16 +20,18 @@ const Rutas = () => {
         if (typeof myStorage.getItem('loggedUser') === "string") {
             //console.log("storage es string?? - siempre es string");
             //console.log(myStorage.getItem('bibliotecaLoggedUser'));
-            setUserGlobal(JSON.parse(myStorage.getItem('loggedUse')));
+            setUserGlobal(JSON.parse(myStorage.getItem('loggedUser')));
         } 
     }, [])
 
     useEffect(() => {
         //console.log("effect userglobal");
+        console.log(userGlobal);
         if (myStorage.getItem('loggedUser') === null) {
             //console.log("storage es null");
             if (userGlobal) {
                 //console.log("entra");
+                
                 myStorage.setItem('loggedUser', JSON.stringify(userGlobal));
             }
         } 
