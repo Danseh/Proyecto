@@ -4,7 +4,7 @@ import Buscador from './Buscador';
 
 const url = `/api/pisos`;
 
-const Libros = ({ userGlobal }) => {
+const Pisos = ({ userGlobal }) => {
   const [jsonData, setJsonData] = useState({});
   const [pisos, setPisos] = useState([]);
   const [paginationInfo, setPaginationInfo] = useState({});
@@ -95,4 +95,4 @@ const Libros = ({ userGlobal }) => {
   )
 }
 
-export default Libros
+export default Pisos

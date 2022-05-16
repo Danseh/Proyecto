@@ -21,9 +21,7 @@ const Header = () => {
             <li>
               <a className="nav-link no-link">{userGlobal?.username ? `Bienvenido ${userGlobal?.username}` : `Bienvenido invitado` }</a>
             </li>
-            <li className="nav-item">
-              {userGlobal?.roles?.find(rol => rol === "ROLE_ADMIN") ? <a className="nav-link" href="/admin">Panel de administración</a> : null}
-            </li>
+
             <li className="nav-item">
               {userGlobal?.username ? <a className="nav-link" onClick={handleLogout}>Cerrar sesión</a> : null }              
             </li>
