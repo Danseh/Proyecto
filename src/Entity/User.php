@@ -14,11 +14,16 @@ use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ApiResource(
-    collectionOperations: [],
-    itemOperations: [
+    collectionOperations: [
         'get' => [
             'method' => 'get',
             'normalization_context' => ['groups' => ['infoUser']],
+        ],
+    ],
+    itemOperations: [
+        'get' => [
+            'method' => 'get',
+            'normalization_context' => ['groups' => ['infoUserIndividual']],
         ],
     ],
 )]
@@ -31,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[Groups(['infoUser'])]
+    #[Groups(['infoUser', 'infoUserIndividual'])]
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $username;
 
@@ -50,17 +55,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Piso::class, mappedBy: 'miembros')]
     private $pisos;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Edad;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Sexo;
-
+    #[Groups(['infoUserIndividual'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $informacion;
 
+    #[Groups(['infoUserIndividual'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $gustos;
+
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private $sexo;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $edad;
+
 
     public function __construct()
     {
@@ -195,30 +203,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getEdad(): ?string
-    {
-        return $this->Edad;
-    }
-
-    public function setEdad(?string $Edad): self
-    {
-        $this->Edad = $Edad;
-
-        return $this;
-    }
-
-    public function getSexo(): ?string
-    {
-        return $this->Sexo;
-    }
-
-    public function setSexo(?string $Sexo): self
-    {
-        $this->Sexo = $Sexo;
-
-        return $this;
-    }
-
     public function getInformacion(): ?string
     {
         return $this->informacion;
@@ -239,6 +223,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGustos(?string $gustos): self
     {
         $this->gustos = $gustos;
+
+        return $this;
+    }
+
+    public function getSexo(): ?string
+    {
+        return $this->sexo;
+    }
+
+    public function setSexo(?string $sexo): self
+    {
+        $this->sexo = $sexo;
+
+        return $this;
+    }
+
+    public function getEdad(): ?int
+    {
+        return $this->edad;
+    }
+
+    public function setEdad(?int $edad): self
+    {
+        $this->edad = $edad;
 
         return $this;
     }
