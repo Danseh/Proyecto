@@ -50,6 +50,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Piso::class, mappedBy: 'miembros')]
     private $pisos;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $Edad;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $Sexo;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $informacion;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $gustos;
+
     public function __construct()
     {
         $this->pisosPublicados = new ArrayCollection();
@@ -179,6 +191,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->pisos->removeElement($piso)) {
             $piso->removeMiembro($this);
         }
+
+        return $this;
+    }
+
+    public function getEdad(): ?string
+    {
+        return $this->Edad;
+    }
+
+    public function setEdad(?string $Edad): self
+    {
+        $this->Edad = $Edad;
+
+        return $this;
+    }
+
+    public function getSexo(): ?string
+    {
+        return $this->Sexo;
+    }
+
+    public function setSexo(?string $Sexo): self
+    {
+        $this->Sexo = $Sexo;
+
+        return $this;
+    }
+
+    public function getInformacion(): ?string
+    {
+        return $this->informacion;
+    }
+
+    public function setInformacion(?string $informacion): self
+    {
+        $this->informacion = $informacion;
+
+        return $this;
+    }
+
+    public function getGustos(): ?string
+    {
+        return $this->gustos;
+    }
+
+    public function setGustos(?string $gustos): self
+    {
+        $this->gustos = $gustos;
 
         return $this;
     }
