@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import Layout from './Layout';
-import Login from './Login';
-import UserMain from './UserMain';
 import Pisos from './Pisos';
 import Crearpiso from './Crearpiso';
-
-
-
-
 
 const myStorage = window.localStorage;
 
