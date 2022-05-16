@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 
-const postUrl = `/api/pisos`;
+const postUrl = `/api/pisosPublicados`;
 
 
 const Crearpiso = ({userGlobal}) => {
+  const today = new Date();
   const [inputTitulo, setInputTitulo] = useState("");
   const [inputCiudad, setInputCiudad] = useState("");
   const [inputDireccion, setInputDireccion] = useState("");
@@ -18,16 +19,12 @@ const Crearpiso = ({userGlobal}) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(objectToUpload)
+        body: objectToUpload
       });
       //console.log(response);
       const data = await response.json();
       console.log(data);
-      if ("error" in data) {
-        alert("Credenciales inválidas");
-        return;
-      }
-      setUserGlobal(data);
+      // console.log(userGlobal);
 
     } catch (error) {
       console.log(error);
@@ -35,6 +32,9 @@ const Crearpiso = ({userGlobal}) => {
   };
 
   const handleSubmit = (e) => {
+    let form = document.getElementById("formCreate");
+    let formData = new FormData();  
+    console.log(formData);
     e.preventDefault();
     if (inputTitulo.length === 0 || inputCiudad.length === 0 || inputDescripcion.length === 0) {
       alert("Rellene todos los campos");
@@ -45,10 +45,14 @@ const Crearpiso = ({userGlobal}) => {
       ciudad: inputCiudad,
       direccion: inputDireccion,
       descripcion: inputDescripcion,
+      owner: null,
       fechaPublicacion: null
     }
+    for (let key in data) {
+      formData.append(key, data[key]);
+    }
     //console.log(data);
-    fetchPost(loginUrl, data);
+    fetchPost(postUrl, formData);
   }
 
   const handleChange = (e) => {
@@ -68,7 +72,7 @@ const Crearpiso = ({userGlobal}) => {
   }
 
   return (
-    <form method="post" onSubmit={handleSubmit}>
+    <form method="post" onSubmit={handleSubmit} id="formCreate" enctype="multipart/form-data">
         <h3 className="mb-3 mb-md-4 font-weight-normal">Publicar piso</h3>
         
         <div className="form-group">
@@ -88,7 +92,7 @@ const Crearpiso = ({userGlobal}) => {
 
         <div className="form-group">
           <label htmlFor="inputDescripcion">Descripcion</label>
-          <input type="password" value={inputDescripcion} onChange={handleChange} name="descripcion" id="inputDescripcion" className="form-control" autoComplete="current-password" required />
+          <input type="text" value={inputDescripcion} onChange={handleChange} name="descripcion" id="inputDescripcion" className="form-control" autoComplete="username" required />
         </div>
             
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>

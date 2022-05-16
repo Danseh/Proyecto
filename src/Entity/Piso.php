@@ -13,6 +13,9 @@ use Doctrine\Common\Collections\Collection;
 
 #[ApiResource(    
     collectionOperations: [
+        'input_formats' => [
+            'multipart' => ['multipart/form-data'],
+        ],
         'get' => [
             'method' => 'get',
             'normalization_context' => ['groups' => ['infoPisos']],
@@ -31,7 +34,7 @@ use Doctrine\Common\Collections\Collection;
     ],
 )]
 
-#[ApiFilter(SearchFilter::class, properties: ['ubicacion' => 'partial'])]
+#[ApiFilter(SearchFilter::class, properties: ['ciudad' => 'partial'])]
 class Piso
 {
     #[Groups(['infoPisos', 'infoPisoIndividual'])]
@@ -51,7 +54,7 @@ class Piso
     #[ORM\Column(type: 'date', nullable: true)]
     private $fechaPublicacion;
 
-    #[Groups(['crearPiso', 'infoPisos', 'infoPisoIndividual'])]
+    #[Groups(['infoPisos', 'infoPisoIndividual'])]
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'pisosPublicados')]
     private $owner;
 
@@ -61,11 +64,11 @@ class Piso
 
     #[Groups(['crearPiso', 'infoPisos', 'infoPisoIndividual'])]
     #[ORM\Column(type: 'string', length: 255)]
-    private $Ciudad;
+    private $direccion;
 
     #[Groups(['crearPiso', 'infoPisos', 'infoPisoIndividual'])]
     #[ORM\Column(type: 'string', length: 255)]
-    private $direccion;
+    private $ciudad;
 
     public function __construct()
     {
@@ -85,18 +88,6 @@ class Piso
     public function setTitulo(string $titulo): self
     {
         $this->titulo = $titulo;
-
-        return $this;
-    }
-
-    public function getUbicacion(): ?string
-    {
-        return $this->Ubicacion;
-    }
-
-    public function setUbicacion(?string $Ubicacion): self
-    {
-        $this->Ubicacion = $Ubicacion;
 
         return $this;
     }
@@ -161,18 +152,6 @@ class Piso
         return $this;
     }
 
-    public function getCiudad(): ?string
-    {
-        return $this->Ciudad;
-    }
-
-    public function setCiudad(string $Ciudad): self
-    {
-        $this->Ciudad = $Ciudad;
-
-        return $this;
-    }
-
     public function getDireccion(): ?string
     {
         return $this->direccion;
@@ -181,6 +160,18 @@ class Piso
     public function setDireccion(string $direccion): self
     {
         $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    public function getCiudad(): ?string
+    {
+        return $this->ciudad;
+    }
+
+    public function setCiudad(string $ciudad): self
+    {
+        $this->ciudad = $ciudad;
 
         return $this;
     }
