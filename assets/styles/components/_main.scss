@@ -1,0 +1,15 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 0.5rem;
+
+    & .buscador form {
+        display: flex;
+
+        & input[type="search"] {
+            width: 30rem;
+          }
+      }
+  }
+

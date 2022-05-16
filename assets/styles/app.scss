@@ -1,0 +1,35 @@
+body {
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "body";
+    font-size: 0.9rem;
+    min-width: 375px;
+    border: 5px solid red;
+    background-color: red;
+}
+
+header {
+    display: flex;
+    background-color: pink;
+    justify-content: center;
+  }
+
+  .content {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: space-between;  
+  }
+  
+
+
+  footer {
+    display:flex;
+    flex: 0 0 auto;
+    background-color: plum;
+    padding: 1.75rem 0;
+  }
+
+@import "./components/aside";
+@import "./components/main";
