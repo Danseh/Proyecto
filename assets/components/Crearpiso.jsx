@@ -16,9 +16,6 @@ const Crearpiso = ({userGlobal}) => {
     try {
       const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: objectToUpload
       });
       //console.log(response);
@@ -31,29 +28,26 @@ const Crearpiso = ({userGlobal}) => {
     }
   };
 
-  const handleSubmit = (e) => {
-    let form = document.getElementById("formCreate");
-    let formData = new FormData();  
-    console.log(formData);
-    e.preventDefault();
-    if (inputTitulo.length === 0 || inputCiudad.length === 0 || inputDescripcion.length === 0) {
-      alert("Rellene todos los campos");
-      return;
-    }
-    const data = {
-      titulo: inputTitulo,
-      ciudad: inputCiudad,
-      direccion: inputDireccion,
-      descripcion: inputDescripcion,
-      owner: null,
-      fechaPublicacion: null
-    }
-    for (let key in data) {
-      formData.append(key, data[key]);
-    }
-    //console.log(data);
-    fetchPost(postUrl, formData);
-  }
+  // const handleSubmit = (e) => {
+  //   let formData = new FormData();  
+  //   e.preventDefault();
+  //   if (inputTitulo.length === 0 || inputCiudad.length === 0 || inputDescripcion.length === 0) {
+  //     alert("Rellene todos los campos");
+  //     return;
+  //   }
+  //   const data = {
+  //     titulo: inputTitulo,
+  //     ciudad: inputCiudad,
+  //     direccion: inputDireccion,
+  //     descripcion: inputDescripcion,
+  //   }
+  //   for (let key in data) {
+  //     formData.append(key, data[key]);
+  //   }
+  //   console.log(formData);
+  //   //console.log(data);
+  //   fetchPost(postUrl, formData);
+  // }
 
   const handleChange = (e) => {
     if (e.target.name === "titulo") {
@@ -70,9 +64,9 @@ const Crearpiso = ({userGlobal}) => {
     }
 
   }
-
+  // onSubmit={handleSubmit}
   return (
-    <form method="post" onSubmit={handleSubmit} id="formCreate" enctype="multipart/form-data">
+    <form method="post" action="publicarPiso"  id="formCreate" enctype="multipart/form-data">
         <h3 className="mb-3 mb-md-4 font-weight-normal">Publicar piso</h3>
         
         <div className="form-group">
@@ -91,14 +85,18 @@ const Crearpiso = ({userGlobal}) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="inputDescripcion">Descripcion</label>
+          <label htmlFor="inputDescripcion">Descripción</label>
           <input type="text" value={inputDescripcion} onChange={handleChange} name="descripcion" id="inputDescripcion" className="form-control" autoComplete="username" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="imagenes">Imagenes</label>
+          <input type="file" name="imagenes[]" id="imagenes" className="form-control"  multiple="multiple" required />
         </div>
             
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
             
         <button className="btn btn-lg btn-primary" type="submit">
-        <p>Crearr</p>
+        <p>Crear</p>
         </button>
 
         

@@ -13,17 +13,9 @@ use Doctrine\Common\Collections\Collection;
 
 #[ApiResource(    
     collectionOperations: [
-        'input_formats' => [
-            'multipart' => ['multipart/form-data'],
-        ],
         'get' => [
             'method' => 'get',
             'normalization_context' => ['groups' => ['infoPisos']],
-        ],
-        'post' => [
-            'path' => 'pisosPublicados',
-            'denormalization_context' => ['groups' => ['crearPiso']],
-            'security' => 'is_granted("ROLE_USER")'
         ],
     ],
     itemOperations: [
@@ -69,6 +61,10 @@ class Piso
     #[Groups(['crearPiso', 'infoPisos', 'infoPisoIndividual'])]
     #[ORM\Column(type: 'string', length: 255)]
     private $ciudad;
+
+    #[Groups(['infoPisos', 'infoPisoIndividual'])]
+    #[ORM\Column(type: 'array', nullable: true)]
+    private $imagenes = [];
 
     public function __construct()
     {
@@ -172,6 +168,27 @@ class Piso
     public function setCiudad(string $ciudad): self
     {
         $this->ciudad = $ciudad;
+
+        return $this;
+    }
+
+    public function getImagenes(): ?array
+    {
+        return $this->imagenes;
+    }
+
+    public function addImagen(String $imagen): self
+    {
+        if (!in_array($imagen, $this->imagenes)) {
+            $this->imagenes[] = $imagen;
+        }
+
+        return $this;
+    }
+
+    public function removeImagen(String $imagen): self
+    {
+        $this->imagenes->removeElement($imagen);
 
         return $this;
     }
