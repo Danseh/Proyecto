@@ -7,7 +7,7 @@ const Footer = () => {
     <footer>
             <div className = "contacto">
                 <div className="copyright">
-                    <p className="mb-2">Copyright © 2022 LiveWithme. Todos los derechos reservados.</p>
+                    <p className="mb-2">Copyright © 2022 LiveWithMe. Todos los derechos reservados.</p>
 
                 </div>
             </div>

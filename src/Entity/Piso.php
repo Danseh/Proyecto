@@ -52,7 +52,7 @@ class Piso
     private $owner;
 
     #[Groups(['infoPisoIndividual'])]
-    #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'pisos')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'pisos')]
     private $miembros;
 
     #[Groups(['crearPiso', 'infoPisos', 'infoPisoIndividual'])]
@@ -133,7 +133,7 @@ class Piso
         return $this->miembros;
     }
 
-    public function addMiembro(user $miembro): self
+    public function addMiembro(User $miembro): self
     {
         if (!$this->miembros->contains($miembro)) {
             $this->miembros[] = $miembro;
@@ -142,7 +142,7 @@ class Piso
         return $this;
     }
 
-    public function removeMiembro(user $miembro): self
+    public function removeMiembro(User $miembro): self
     {
         $this->miembros->removeElement($miembro);
 

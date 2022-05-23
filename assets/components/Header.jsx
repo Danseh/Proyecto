@@ -9,8 +9,10 @@ const Header = () => {
   return (
     <header>
       
-        {/* <Link to="/"><img id="logo" src="/img/logo.png" alt="logoHLANZ" /></Link> */}
-        <h1>Live With Me</h1>
+      <Link to="/">
+        <img id="logo" src="/img/logo.png" alt="logo1"/>
+        <img id="logo" src="/img/logo1.png" alt="logo2"/>
+      </Link>
         
         {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>

@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 70%;
     padding: 0.5rem;
+    
 
     & .buscador form {
         display: flex;
@@ -12,4 +13,8 @@
           }
       }
   }
+
+.piso {
+    display: flex;
+}
 

@@ -23,34 +23,33 @@ const Pisos = ({ userGlobal }) => {
     }
   };
 
-  // const handleNext = () => {
-  //   getInfo(`${paginationInfo["hydra:next"]}`);
-  // }
+  const handleNext = () => {
+    getInfo(`${paginationInfo["hydra:next"]}`);
+  }
 
-  // const handlePrevious = () => {
-  //   getInfo(`${paginationInfo["hydra:previous"]}`);
-  // }
+  const handlePrevious = () => {
+    getInfo(`${paginationInfo["hydra:previous"]}`);
+  }
 
   useEffect(() => {
     getInfo(url);
   }, []);
 
-  // useEffect(() => {
-  //   console.log("effect jsondata");
-  //   //console.log(jsonData["hydra:member"]);
-  //   if ("hydra:member" in jsonData) {
-  //     setPisos(jsonData["hydra:member"]);
-  //   }
-  //   if ("hydra:view" in jsonData) {
-  //     if ("hydra:first" in jsonData["hydra:view"]) {
-  //       setPaginationInfo(jsonData["hydra:view"]);
-  //       setMultiplePages(true);
-  //     } else {
-  //       setPaginationInfo({});
-  //       setMultiplePages(false);
-  //     }
-  //   }
-  // }, [jsonData])
+  useEffect(() => {
+    console.log(jsonData);
+    if ("hydra:member" in jsonData) {
+      setPisos(jsonData["hydra:member"]);
+    }
+    if ("hydra:view" in jsonData) {
+      if ("hydra:first" in jsonData["hydra:view"]) {
+        setPaginationInfo(jsonData["hydra:view"]);
+        setMultiplePages(true);
+      } else {
+        setPaginationInfo({});
+        setMultiplePages(false);
+      }
+    }
+  }, [jsonData])
 
 
   return (
@@ -60,35 +59,29 @@ const Pisos = ({ userGlobal }) => {
         <Buscador setJsonData={setJsonData} />
       </section>
 
-      <section className="pisos">
-        <div className="piso" >
-            <h4>Piso 1</h4>
-            <p>Granada</p>
-        </div>
-        
-
-          {/* <section className='pisos'>
+          <section className='pisos'>
             {pisos.map((piso) => (
               <Link to={'piso/' + piso.id.toString()} key={piso.id}>
-                <div className="pisos" >
+                <div className="piso" >
+                  <img src={piso.imagenes[0]} width="100px" height="100px"/>
                   <h4>{piso.titulo}</h4>
-                  <p>{piso.autor}</p>
+                  <p>{piso.ciudad}</p>
                 </div>
               </Link>
             ))}
-          </section> */}
+
         
-        {/* {multiplePages ?
+        {multiplePages ?
           paginationInfo["hydra:first"] === paginationInfo["@id"] ?
             null :
-            <button onClick={handlePrevious} className="btn">Anterior</button> :
+            <button onClick={handlePrevious} className="btn btn-lg btn-primary">Anterior</button> :
           null}
 
         {multiplePages ?
           paginationInfo["@id"] === paginationInfo["hydra:last"] ?
             null :
-            <button onClick={handleNext} className="btn">Siguiente</button> :
-          null} */}
+            <button onClick={handleNext} className="btn btn-lg btn-primary">Siguiente</button> :
+          null}
 
       </section>
     </>

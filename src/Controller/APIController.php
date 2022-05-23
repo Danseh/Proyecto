@@ -61,7 +61,7 @@ class APIController extends AbstractController
                         $newFilename
                     );
 
-                    $piso->addImagen($rutaImagen.'/'.$newFilename);
+                    $piso->addImagen("/pisos/".$titulo."/".$newFilename);
                 }
                 catch (FileException $e) {
                 // ... handle exception if something happens during file upload
@@ -74,7 +74,7 @@ class APIController extends AbstractController
         $piso->setDireccion($request->request->get('direccion'));
         $piso->setDescripcion($request->request->get('descripcion'));
         $piso->setOwner($this->getUser());
-        $piso->addMiembro($this->getUser());
+        // $piso->addMiembro($this->getUser());
 
         $entityManager->persist($piso);
         $entityManager->flush();
