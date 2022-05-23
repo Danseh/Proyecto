@@ -1,0 +1,13 @@
+.user-container {
+    display: flex;
+    flex-direction: column;
+
+    & .user-header {
+        display: flex;
+    }
+
+    & .user-basico {
+        display: flex;
+        justify-content: space-around;
+    }
+}

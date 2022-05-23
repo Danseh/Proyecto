@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\Collection;
 #[ORM\Entity(repositoryClass: PisoRepository::class)]
 
 #[ApiResource(    
+    attributes: ["pagination_items_per_page" => 5],
     collectionOperations: [
         'get' => [
             'method' => 'get',

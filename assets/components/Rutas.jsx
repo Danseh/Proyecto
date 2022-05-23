@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import Pisos from './Pisos';
 import Crearpiso from './Crearpiso';
+import User from './User';
 
 const myStorage = window.localStorage;
 
@@ -39,6 +40,8 @@ const Rutas = () => {
                 <Route path="/" element={<Layout userGlobal={userGlobal} setUserGlobal={setUserGlobal}/>}>
                     <Route index element={<Pisos userGlobal={userGlobal} setUserGlobal={setUserGlobal}/>} />
                     <Route path="crearpiso" element={<Crearpiso userGlobal={userGlobal} />} />
+                    <Route path="user/:id" element={<User userGlobal={userGlobal} />} />
+
                 </Route>
             </Routes>
         </BrowserRouter>

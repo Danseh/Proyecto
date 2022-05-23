@@ -63,11 +63,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $gustos;
 
+    #[Groups(['infoUserIndividual'])]
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private $sexo;
 
+    #[Groups(['infoUserIndividual'])]
     #[ORM\Column(type: 'integer', nullable: true)]
     private $edad;
+
+    #[Groups(['infoUserIndividual'])]
+    #[ORM\Column(type: 'string', length: 255)]
+    private $foto;
 
 
     public function __construct()
@@ -247,6 +253,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEdad(?int $edad): self
     {
         $this->edad = $edad;
+
+        return $this;
+    }
+
+    public function getFoto(): ?string
+    {
+        return $this->foto;
+    }
+
+    public function setFoto(string $foto): self
+    {
+        $this->foto = $foto;
 
         return $this;
     }

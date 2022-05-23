@@ -21,18 +21,18 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class APIController extends AbstractController
 {
     //#[Route('/libros', name: 'api_libros')]
-    public function libros(LibroRepository $libroRepository):Response
+    public function libros(PisoRepository $PisoRepository):Response
     {
-        $libros = $libroRepository
+        $piso = $pisoRepository
             ->findAll();
 
-        return $this->json($libros, Response::HTTP_OK, [], ['groups' => 'infoLibros']);
+        return $this->json($pisos, Response::HTTP_OK, [], ['groups' => 'infoPisos']);
     }
 
     //#[Route('/libros/{id}', name: 'api_libro_individual', methods: ['GET'])]
-    public function libro(Libro $libro):Response
+    public function libro(Piso $piso):Response
     {
-        return $this->json($libro, Response::HTTP_OK, [], ['groups' => 'infoLibroIndividual']);
+        return $this->json($piso, Response::HTTP_OK, [], ['groups' => 'infoPisoIndividual']);
     }
 
     #[Route('/publicarPiso', name: 'publicarPiso', methods: ['GET', 'POST'])]
