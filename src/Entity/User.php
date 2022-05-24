@@ -71,7 +71,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer', nullable: true)]
     private $edad;
 
-    #[Groups(['infoUserIndividual'])]
+    #[Groups(['infoUser', 'infoUserIndividual'])]
     #[ORM\Column(type: 'string', length: 255)]
     private $foto;
 

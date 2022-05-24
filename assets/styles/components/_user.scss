@@ -8,6 +8,7 @@
         display: flex;
         justify-content: space-around;
         height: 10%;
+        margin-top: 1rem;
 
         & h1 {
             flex: 1 0 auto;
@@ -18,6 +19,7 @@
     & .user-header {
         display: flex;
         height: 50%;
+        border-bottom: 1px solid black;
 
         & img {
             flex: 0 0 30%;
@@ -26,7 +28,8 @@
 
     & .user-header-editar {
         display: flex;
-        height: 55%;
+        height: 45%;
+        border-bottom: 1px solid black;
 
         & .user-imagen {
             display: flex;
@@ -43,6 +46,8 @@
         display: flex;
         justify-content: space-around;
         height: 15%;
+        margin-top: 1rem;
+        border-bottom: 1px solid black;
 
         & .user-sexo {
             display: flex;
@@ -63,6 +68,9 @@
         display: flex;
         justify-content: space-around;
         flex: 1 0 30%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid black;
 
         & .user-sobremi {
             display: flex;
@@ -75,6 +83,7 @@
             flex-direction: column;
             align-items: space-around;
         }
+
     }
 
     & h1 {
@@ -85,5 +94,15 @@
     & h4 {
         text-align: right;
     }
+
+    & .form-guardar {
+        height: 20%;
+
+        & input[type="submit"] {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
 
 }

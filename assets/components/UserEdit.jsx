@@ -66,19 +66,22 @@ const UserEdit = () => {
           <input type="text" value={user.edad}/>
         </div>
       </div>
-
       <div className='user-informacion'>
         
         <div className="user-sobremi">
           <h3>Sobre mi</h3>
           <input type="text" value={user.informacion}/>
         </div>
+
         <div className="user-gustos">
           <h3>Gustos/aficiones</h3>
           <input type="text" value={user.gustos}/>
         </div>
       </div>
 
+      <div className='form-guardar'>
+        <input type="submit" value="Guardar" className="btn btn-lg btn-primary"/>
+      </div>
       </form>
     </div>
   )
