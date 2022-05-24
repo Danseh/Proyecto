@@ -1,13 +1,89 @@
 .user-container {
     display: flex;
     flex-direction: column;
+    align-items: space-between;
+    justify-content: space-between;
+
+    & .user-titulo {
+        display: flex;
+        justify-content: space-around;
+        height: 10%;
+
+        & h1 {
+            flex: 1 0 auto;
+            margin-left: 5rem;
+        }
+    }
 
     & .user-header {
         display: flex;
+        height: 50%;
+
+        & img {
+            flex: 0 0 30%;
+        }
+    }
+
+    & .user-header-editar {
+        display: flex;
+        height: 55%;
+
+        & .user-imagen {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+
+            & img {
+                flex: 1 0 auto;
+            }
+        }
     }
 
     & .user-basico {
         display: flex;
         justify-content: space-around;
+        height: 15%;
+
+        & .user-sexo {
+            display: flex;
+            flex-direction: column;
+            align-items: space-between;
+            margin-right: 5rem;
+        }
+
+        & .user-edad {
+            display: flex;
+            flex-direction: column;
+            align-items: space-between;
+            margin-right: 7rem;
+        }
     }
+
+    & .user-informacion {
+        display: flex;
+        justify-content: space-around;
+        flex: 1 0 30%;
+
+        & .user-sobremi {
+            display: flex;
+            flex-direction: column;
+            align-items: space-around;
+        }
+
+        & .user-gustos {
+            display: flex;
+            flex-direction: column;
+            align-items: space-around;
+        }
+    }
+
+    & h1 {
+        text-align: center;
+        margin-bottom: 5rem;
+    }
+
+    & h4 {
+        text-align: right;
+    }
+
 }

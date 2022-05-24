@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom';
 import Aside from './Aside';
 
-import Login from './Login';
 
 const UserMain = ({userGlobal,setUserGlobal}) => {
   

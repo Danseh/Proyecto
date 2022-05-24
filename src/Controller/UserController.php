@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Piso;
-use App\Repository\PisoRepository;
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,20 +16,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-/* #[Route('api')] */
-class APIController extends AbstractController
+class UserController extends AbstractController
 {
-
-    #[Route('api/login', name: 'api_login')]
-    public function login(): Response
-    {
-        if ($this->getUser()) {
-            return $this->json($this->getUser(), Response::HTTP_OK, [], ['groups' => 'infoUser']);
-        } 
-    }
     
-    #[Route('subirFoto', name: 'subirFoto')]
-    public function subirFoto(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): void
+    #[Route('/user/{user}/subirFoto', name: 'subirFoto', methods: ['GET', 'POST'])]
+    public function subirFoto(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, User $user): Response
     {
         $user = $this->getUser();
         $username = $user->getUsername();
@@ -49,11 +39,16 @@ class APIController extends AbstractController
                 $newFilename
             );
 
-            $user->setFoto("/usuario/".$username."/".$newFilename);
+            $user->setFoto("/profiles/".$username."/".$newFilename);
         }
         catch (FileException $e) {
         // ... handle exception if something happens during file upload
         }
+
+        $entityManager->persist($user);
+        $entityManager->flush();
         
+
+        return $this->redirect('/user/'.$user->getId());
     }
 }

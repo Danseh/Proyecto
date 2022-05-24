@@ -75,7 +75,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $foto;
 
-
     public function __construct()
     {
         $this->pisosPublicados = new ArrayCollection();

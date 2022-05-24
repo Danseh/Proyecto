@@ -17,6 +17,7 @@ use Doctrine\Common\Collections\Collection;
         'get' => [
             'method' => 'get',
             'normalization_context' => ['groups' => ['infoPisos']],
+            'filters '=> ['offer.search_filter'],
         ],
     ],
     itemOperations: [
@@ -27,7 +28,7 @@ use Doctrine\Common\Collections\Collection;
     ],
 )]
 
-#[ApiFilter(SearchFilter::class, properties: ['ciudad' => 'partial'])]
+// #[ApiFilter(SearchFilter::class, properties: ['ciudad' => 'partial'])]
 class Piso
 {
     #[Groups(['infoPisos', 'infoPisoIndividual'])]
@@ -42,7 +43,7 @@ class Piso
 
     #[Groups(['crearPiso', 'infoPisos', 'infoPisoIndividual'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Descripcion;
+    private $descripcion;
 
     #[ORM\Column(type: 'date', nullable: true)]
     private $fechaPublicacion;
@@ -91,12 +92,12 @@ class Piso
 
     public function getDescripcion(): ?string
     {
-        return $this->Descripcion;
+        return $this->descripcion;
     }
 
-    public function setDescripcion(?string $Descripcion): self
+    public function setDescripcion(?string $descripcion): self
     {
-        $this->Descripcion = $Descripcion;
+        $this->descripcion = $descripcion;
 
         return $this;
     }

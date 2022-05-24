@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const defaultUrl = `/api/piso?ubicacion=Granada`;
+const defaultUrl = `/api/piso?ciudad=Granada`;
 
 const Buscador = ({ setJsonData }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
-  const searchUrl = `/api/pisos?ubicacion=${searchKeyword}`;
+  const searchUrl = `/api/pisos?ciudad=${searchKeyword}`;
 
   const getInfo = async (url) => {
     try {
