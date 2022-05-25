@@ -4,10 +4,11 @@
     align-items: space-between;
     justify-content: space-between;
 
+
     & .user-titulo {
         display: flex;
         justify-content: space-around;
-        height: 10%;
+
         margin-top: 1rem;
 
         & h1 {
@@ -18,7 +19,7 @@
 
     & .user-header {
         display: flex;
-        height: 50%;
+
         border-bottom: 1px solid black;
 
         & img {
@@ -28,7 +29,7 @@
 
     & .user-header-editar {
         display: flex;
-        height: 45%;
+        
         border-bottom: 1px solid black;
 
         & .user-imagen {
@@ -45,32 +46,30 @@
     & .user-basico {
         display: flex;
         justify-content: space-around;
-        height: 15%;
-        margin-top: 1rem;
+        padding-bottom: 1rem;
         border-bottom: 1px solid black;
 
         & .user-sexo {
             display: flex;
             flex-direction: column;
-            align-items: space-between;
-            margin-right: 5rem;
+            justify-content: space-between;
+            
         }
 
         & .user-edad {
             display: flex;
             flex-direction: column;
-            align-items: space-between;
-            margin-right: 7rem;
+            justify-content: space-between;
+           
         }
     }
 
     & .user-informacion {
         display: flex;
         justify-content: space-around;
-        flex: 1 0 30%;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+        margin-top: 1rem; 
         border-bottom: 1px solid black;
+        padding-bottom: 1rem;
 
         & .user-sobremi {
             display: flex;
@@ -88,12 +87,12 @@
 
     & h1 {
         text-align: center;
-        margin-bottom: 5rem;
+        margin-bottom: 2rem;
     }
 
-    & h4 {
-        text-align: right;
-    }
+    // & h4 {
+    //     text-align: right;
+    // }
 
     & .form-guardar {
         height: 20%;
