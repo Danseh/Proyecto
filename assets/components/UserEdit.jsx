@@ -58,11 +58,11 @@ const UserEdit = () => {
 
       <div className='user-basico'>
         <div className="user-sexo">
-          <h4>Sexo</h4>
+          <h3>Sexo</h3>
           <input type="text" value={user.sexo}/>
         </div>
         <div className="user-edad">
-          <h4>Edad</h4>
+          <h3>Edad</h3>
           <input type="text" value={user.edad}/>
         </div>
       </div>

@@ -70,7 +70,7 @@ const Login = ({setUserGlobal}) => {
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
             
         <button className="btn btn-lg btn-primary" type="submit">
-        <p>Entrar</p>
+        Entrar
         </button>
         <p>¿No tiene una cuenta? <a href="/register">Crea una</a></p>
         

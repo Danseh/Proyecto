@@ -33,7 +33,7 @@ const Crearpiso = () => {
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
             
         <button className="btn btn-lg btn-primary" type="submit">
-        <p>Crear</p>
+        Crear
         </button>
 
         
