@@ -1,9 +1,9 @@
 .main {
     display: flex;
     flex-direction: column;
-    width: 75%;
     padding: 0.5rem;
     flex: 1 0 auto;
+    background-color: #9BA3EB;
 
     & .buscador form {
         display: flex;
@@ -16,5 +16,67 @@
 
 .piso {
     display: flex;
+    margin-top: 1rem;
+    border: 1px solid black;
+    color: black;
+
+    & .piso-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 auto;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    & .piso-info {
+        display: flex;
+        justify-content: space-between;
+        flex: 1 0 auto;
+
+        & .disponible {
+            color: green;
+
+        }
+
+        & .ocupado {
+            color: red;
+        }
+    }
+
+    & .piso-extra {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.pisos {
+    display: flex;
+    flex-direction: column;
+
+    & .paginacion {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 1rem;
+        
+        & button {
+            width: 46%;
+        }
+    }
+
+    & a:link {
+        text-decoration: none;
+      }
+      
+    & a:visited {
+        text-decoration: none;
+      }
+      
+    & a:hover {
+        text-decoration: none;
+      }
+      
+    & a:active {
+        text-decoration: none;
+      }
 }
 

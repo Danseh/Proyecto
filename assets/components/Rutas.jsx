@@ -41,8 +41,10 @@ const Rutas = () => {
                 <Route path="/" element={<Layout userGlobal={userGlobal} setUserGlobal={setUserGlobal}/>}>
                     <Route index element={<Pisos userGlobal={userGlobal} setUserGlobal={setUserGlobal}/>} />
                     <Route path="crearpiso" element={<Crearpiso userGlobal={userGlobal} />} />
-                    <Route path="user/:id" element={<User userGlobal={userGlobal} />} />
-                    <Route path="user/:id/editar" element={<UserEdit userGlobal={userGlobal} />} />
+                    <Route path="user/:id" element={<User userGlobal={userGlobal} setUserGlobal={setUserGlobal} />} />
+                    <Route path="user/:id/editar" element={<UserEdit userGlobal={userGlobal} setUserGlobal={setUserGlobal} />} />
+                    <Route path="piso/:id" element={<Crearpiso userGlobal={userGlobal} />} />
+
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -25,6 +25,10 @@ use Doctrine\Common\Collections\Collection;
             'method' => 'get',
             'normalization_context' => ['groups' => ['infoUserIndividual']],
         ],
+        
+        'put' => [
+            'method' => 'put',
+        ]
     ],
 )]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
@@ -51,10 +55,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Piso::class)]
     private $pisosPublicados;
 
-    #[Groups(['infoUser'])]
-    #[ORM\ManyToMany(targetEntity: Piso::class, mappedBy: 'miembros')]
-    private $pisos;
-
     #[Groups(['infoUserIndividual'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $informacion;
@@ -72,13 +72,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $edad;
 
     #[Groups(['infoUser', 'infoUserIndividual'])]
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $foto;
+
+    #[Groups(['infoUser', 'infoUserIndividual'])]
+    #[ORM\Column(type: 'string', length: 50)]
+    private $nombre;
+
+    #[Groups(['infoUserIndividual'])]
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private $apellidos;
+
+    #[Groups(['infoUserIndividual'])]
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $telefono;
+
+    #[Groups(['infoUserIndividual'])]
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private $email;
+
+    #[Groups(['infoUser', 'infoUserIndividual'])]
+    #[ORM\ManyToOne(targetEntity: Piso::class, inversedBy: 'miembros')]
+    private $piso;
+
+    #[Groups(['infoUser', 'infoUserIndividual'])]
+    #[ORM\ManyToMany(targetEntity: Piso::class, mappedBy: 'interesados')]
+    private $pisosInteresado;
 
     public function __construct()
     {
         $this->pisosPublicados = new ArrayCollection();
         $this->pisos = new ArrayCollection();
+        $this->pisosInteresado = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -181,33 +206,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Piso>
-     */
-    public function getPisos(): Collection
-    {
-        return $this->pisos;
-    }
-
-    public function addPiso(Piso $piso): self
-    {
-        if (!$this->pisos->contains($piso)) {
-            $this->pisos[] = $piso;
-            $piso->addMiembro($this);
-        }
-
-        return $this;
-    }
-
-    public function removePiso(Piso $piso): self
-    {
-        if ($this->pisos->removeElement($piso)) {
-            $piso->removeMiembro($this);
-        }
-
-        return $this;
-    }
-
     public function getInformacion(): ?string
     {
         return $this->informacion;
@@ -264,6 +262,93 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFoto(string $foto): self
     {
         $this->foto = $foto;
+
+        return $this;
+    }
+
+    public function getNombre(): ?string
+    {
+        return $this->nombre;
+    }
+
+    public function setNombre(string $nombre): self
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    public function getApellidos(): ?string
+    {
+        return $this->apellidos;
+    }
+
+    public function setApellidos(?string $apellidos): self
+    {
+        $this->apellidos = $apellidos;
+
+        return $this;
+    }
+
+    public function getTelefono(): ?int
+    {
+        return $this->telefono;
+    }
+
+    public function setTelefono(?int $telefono): self
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPiso(): ?Piso
+    {
+        return $this->piso;
+    }
+
+    public function setPiso(?Piso $piso): self
+    {
+        $this->piso = $piso;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Piso>
+     */
+    public function getPisosInteresado(): Collection
+    {
+        return $this->pisosInteresado;
+    }
+
+    public function addPisosInteresado(Piso $pisosInteresado): self
+    {
+        if (!$this->pisosInteresado->contains($pisosInteresado)) {
+            $this->pisosInteresado[] = $pisosInteresado;
+            $pisosInteresado->addInteresado($this);
+        }
+
+        return $this;
+    }
+
+    public function removePisosInteresado(Piso $pisosInteresado): self
+    {
+        if ($this->pisosInteresado->removeElement($pisosInteresado)) {
+            $pisosInteresado->removeInteresado($this);
+        }
 
         return $this;
     }

@@ -27,6 +27,10 @@ const Pisos = ({ userGlobal }) => {
     getInfo(`${paginationInfo["hydra:next"]}`);
   }
 
+  const handleFirst = () => {
+    getInfo(`${paginationInfo["hydra:first"]}`);
+  }
+
   const handlePrevious = () => {
     getInfo(`${paginationInfo["hydra:previous"]}`);
   }
@@ -63,26 +67,48 @@ const Pisos = ({ userGlobal }) => {
             {pisos.map((piso) => (
               <Link to={'piso/' + piso.id.toString()} key={piso.id}>
                 <div className="piso" >
-                  <img src={piso.imagenes[0]} width="100px" height="100px"/>
-                  <h4>{piso.titulo}</h4>
-                  <p>{piso.ciudad}</p>
+                <img src={piso.imagenes[0]} width="200px" height="200px"/>
+                  <div className="piso-content">
+                    <h2>{piso.titulo}</h2>
+                      <div className="piso-info">
+                        <p>Situado en: {piso.ciudad}</p>
+                        <p>Estado: &nbsp;
+                          {piso.estado === 'Disponible' ? 
+                          <span className="disponible">Disponible</span> :
+                          <span className="ocupado">Ocupado</span>}
+                        </p>
+                        
+                        <p>Plazas: {piso.miembros.length} / {piso.plazas}</p>
+                      </div>
+                      <div className="piso-extra">
+                        <h2>{piso.precio}€/mes</h2>
+                        {piso.estado === 'Ocupado' ? 
+                          <p>Fecha disponibilidad: 27/05/1994{piso.fechaDisponible}</p> :
+                          null}
+                      </div>
+                  </div>
                 </div>
               </Link>
             ))}
 
-        
+        <div className="paginacion">
+
+        {multiplePages ?
+          paginationInfo["@id"] === paginationInfo["hydra:last"] ?
+          <button onClick={handleFirst} className="btn btn-lg btn-primary">Ir a primera</button> :
+          
+            <button onClick={handleNext} className="btn btn-lg btn-primary">Siguiente</button> :
+          null}
+
+          
         {multiplePages ?
           paginationInfo["hydra:first"] === paginationInfo["@id"] ?
             null :
             <button onClick={handlePrevious} className="btn btn-lg btn-primary">Anterior</button> :
           null}
 
-        {multiplePages ?
-          paginationInfo["@id"] === paginationInfo["hydra:last"] ?
-            null :
-            <button onClick={handleNext} className="btn btn-lg btn-primary">Siguiente</button> :
-          null}
 
+      </div>
       </section>
     </>
   )

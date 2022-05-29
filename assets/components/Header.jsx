@@ -7,12 +7,14 @@ const logoutUrl =  `/logout`;
 const Header = () => {
 
   return (
+    <>
+    <Link to="/">
     <header>
       
-      <Link to="/">
-        <img id="logo" src="/img/logo.png" alt="logo1"/>
-        <img id="logo" src="/img/logo1.png" alt="logo2"/>
-      </Link>
+      
+        <img id="logo" src="/img/logo.png" alt="logo1" width="200px" height="150px" />
+        <img id="logo" src="/img/logo1.png" alt="logo2" width="500px" height="100px"/>
+        <img id="logo" src="/img/logo.png" alt="logo1" width="200px" height="150px" />
         
         {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -31,6 +33,8 @@ const Header = () => {
         </div> */}
       
     </header>
+    </Link>
+    </>
   )
 }
 

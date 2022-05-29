@@ -2,15 +2,29 @@ aside {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
+    width: 20%;
     border-right: 1px solid black;
+    background-color: #646FD4;
     
     & ul {
         list-style: none;
-        padding: 0;
+        padding-right: 2rem;
         
         & li {
             padding-top: 0.5rem;
+
+            & img {
+                border-radius: 5rem;
+            }
+
+            & p {
+                text-align: center;
+            }
+
+          }
+
+          & button {
+              width: 100%;
           }
       }
     

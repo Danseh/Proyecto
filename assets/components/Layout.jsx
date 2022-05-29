@@ -12,7 +12,7 @@ const Layout = ({userGlobal, setUserGlobal}) => {
     <>
       <Header userGlobal={userGlobal} setUserGlobal={setUserGlobal} />
       <UserMain userGlobal={userGlobal} setUserGlobal={setUserGlobal} />
-      <Footer />
+
     </>
   )
 }

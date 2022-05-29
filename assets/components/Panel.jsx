@@ -26,10 +26,11 @@ const Panel = ({userGlobal, setUserGlobal}) => {
     <div>
           <ul>
             <li>
-              Bienvenido {userGlobal?.username}
+               <h2>Bienvenido {userGlobal?.nombre}</h2>
+              
             </li>
             <li>
-              <img src={userGlobal.foto} alt="perfil" width="100px" height="100px"></img>
+              <p><img src={userGlobal.foto} alt="perfil" width="150px" height="150px"></img></p>
             </li>
             <li>
               <Link to={'user/' + userGlobal.id.toString()}>

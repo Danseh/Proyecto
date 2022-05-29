@@ -27,7 +27,9 @@ class PisoController extends AbstractController
         
         $imagenes = $request->files->get('imagenes');
 
-        if ($imagenes) {
+        $arrayImagenes;
+
+        if ($imagenes && count($imagenes) <= 5) {
             
             foreach ($imagenes as $imagen) {
 
@@ -44,26 +46,28 @@ class PisoController extends AbstractController
                         $newFilename
                     );
 
-                    $piso->addImagen("/pisos/".$titulo."/".$newFilename);
+                    $arrayImagenes[] = "/pisos/".$titulo."/".$newFilename;
                 }
                 catch (FileException $e) {
                 // ... handle exception if something happens during file upload
                 }
             }
 
+            $piso->setImagenes($arrayImagenes);
+            $piso->setTitulo($titulo);
+            $piso->setCiudad($request->request->get('ciudad'));
+            $piso->setDireccion($request->request->get('direccion'));
+            $piso->setDescripcion($request->request->get('descripcion'));
+            $piso->setPlazas($request->request->get('plazas'));
+            $piso->setEstado("Disponible");
+            $piso->setPrecio($request->request->get('precio'));
+            $piso->setOwner($this->getUser());
+    
+            $entityManager->persist($piso);
+            $entityManager->flush();
         }
-        $piso->setTitulo($titulo);
-        $piso->setCiudad($request->request->get('ciudad'));
-        $piso->setDireccion($request->request->get('direccion'));
-        $piso->setDescripcion($request->request->get('descripcion'));
-        $piso->setOwner($this->getUser());
-        // $piso->addMiembro($this->getUser());
 
-        $entityManager->persist($piso);
-        $entityManager->flush();
-
-        // $piso->setTitulo($request->request->get('titulo'));
-
+        
         return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
         
     }

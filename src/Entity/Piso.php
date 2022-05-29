@@ -6,18 +6,20 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PisoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 
 #[ORM\Entity(repositoryClass: PisoRepository::class)]
 
 #[ApiResource(    
-    attributes: ["pagination_items_per_page" => 5],
+    attributes: ["pagination_items_per_page" => 3],
     collectionOperations: [
         'get' => [
             'method' => 'get',
             'normalization_context' => ['groups' => ['infoPisos']],
-            'filters '=> ['offer.search_filter'],
         ],
     ],
     itemOperations: [
@@ -27,8 +29,13 @@ use Doctrine\Common\Collections\Collection;
         ],
     ],
 )]
+/** 
+* @ApiFilter(SearchFilter::class, properties={"ciudad": "exact"})
+*/
 
-// #[ApiFilter(SearchFilter::class, properties: ['ciudad' => 'partial'])]
+#[ApiFilter(OrderFilter::class, properties: ['precio'], arguments: ['orderParameterName' => 'order'])]
+
+
 class Piso
 {
     #[Groups(['infoPisos', 'infoPisoIndividual'])]
@@ -52,10 +59,6 @@ class Piso
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'pisosPublicados')]
     private $owner;
 
-    #[Groups(['infoPisoIndividual'])]
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'pisos')]
-    private $miembros;
-
     #[Groups(['crearPiso', 'infoPisos', 'infoPisoIndividual'])]
     #[ORM\Column(type: 'string', length: 255)]
     private $direccion;
@@ -68,9 +71,34 @@ class Piso
     #[ORM\Column(type: 'array', nullable: true)]
     private $imagenes = [];
 
+    #[Groups(['infoPisos', 'infoPisoIndividual'])]
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $precio;
+
+    #[Groups(['infoPisos', 'infoPisoIndividual'])]
+    #[ORM\Column(type: 'integer')]
+    private $plazas;
+
+    #[Groups(['infoPisos', 'infoPisoIndividual'])]
+    #[ORM\Column(type: 'string', length: 20)]
+    private $estado;
+
+    #[Groups(['infoPisos', 'infoPisoIndividual'])]
+    #[ORM\Column(type: 'date', nullable: true)]
+    private $fechaDisponible;
+
+    #[Groups(['infoPisos', 'infoPisoIndividual'])]
+    #[ORM\OneToMany(mappedBy: 'piso', targetEntity: User::class)]
+    private $miembros;
+
+    #[Groups(['infoPisoIndividual'])]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'pisosInteresado')]
+    private $interesados;
+
     public function __construct()
     {
         $this->miembros = new ArrayCollection();
+        $this->interesados = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,30 +154,6 @@ class Piso
         return $this;
     }
 
-    /**
-     * @return Collection<int, user>
-     */
-    public function getMiembros(): Collection
-    {
-        return $this->miembros;
-    }
-
-    public function addMiembro(User $miembro): self
-    {
-        if (!$this->miembros->contains($miembro)) {
-            $this->miembros[] = $miembro;
-        }
-
-        return $this;
-    }
-
-    public function removeMiembro(User $miembro): self
-    {
-        $this->miembros->removeElement($miembro);
-
-        return $this;
-    }
-
     public function getDireccion(): ?string
     {
         return $this->direccion;
@@ -179,6 +183,13 @@ class Piso
         return $this->imagenes;
     }
 
+    public function setImagenes(array $imagenes): self
+    {
+        $this->imagenes = $imagenes;
+
+        return $this;
+    }
+
     public function addImagen(String $imagen): self
     {
         if (!in_array($imagen, $this->imagenes)) {
@@ -191,6 +202,108 @@ class Piso
     public function removeImagen(String $imagen): self
     {
         $this->imagenes->removeElement($imagen);
+
+        return $this;
+    }
+
+    public function getPrecio(): ?int
+    {
+        return $this->precio;
+    }
+
+    public function setPrecio(?int $precio): self
+    {
+        $this->precio = $precio;
+
+        return $this;
+    }
+
+    public function getPlazas(): ?int
+    {
+        return $this->plazas;
+    }
+
+    public function setPlazas(int $plazas): self
+    {
+        $this->plazas = $plazas;
+
+        return $this;
+    }
+
+    public function getEstado(): ?string
+    {
+        return $this->estado;
+    }
+
+    public function setEstado(string $estado): self
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    public function getFechaDisponible(): ?\DateTimeInterface
+    {
+        return $this->fechaDisponible;
+    }
+
+    public function setFechaDisponible(?\DateTimeInterface $fechaDisponible): self
+    {
+        $this->fechaDisponible = $fechaDisponible;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getMiembros(): Collection
+    {
+        return $this->miembros;
+    }
+
+    public function addMiembro(User $miembro): self
+    {
+        if (!$this->miembros->contains($miembro)) {
+            $this->miembros[] = $miembro;
+            $miembro->setPiso($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMiembro(User $miembro): self
+    {
+        if ($this->miembros->removeElement($miembro)) {
+            // set the owning side to null (unless already changed)
+            if ($miembro->getPiso() === $this) {
+                $miembro->setPiso(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getInteresados(): Collection
+    {
+        return $this->interesados;
+    }
+
+    public function addInteresado(User $interesado): self
+    {
+        if (!$this->interesados->contains($interesado)) {
+            $this->interesados[] = $interesado;
+        }
+
+        return $this;
+    }
+
+    public function removeInteresado(User $interesado): self
+    {
+        $this->interesados->removeElement($interesado);
 
         return $this;
     }

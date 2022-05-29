@@ -31,11 +31,13 @@ const User = ({userGlobal}) => {
   return (
     <div className="user-container">
       <div className="user-header">
-      {user.foto ?
-        <img src={user.foto} /> : 
-        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="perfil"></img>
-        }
-        <h1>{user.username}</h1>
+        <div className="user-imagen">
+          {user.foto ?
+            <img src={user.foto} /> : 
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="perfil" width="200px" height="200px"/>
+            }
+        </div>
+        <h1>{user.nombre} {user.apellidos}</h1>
       </div>
       
       <div className="user-titulo">
@@ -47,19 +49,45 @@ const User = ({userGlobal}) => {
            null
           }
       </div>
+        
+      <div className='user-personal'>
 
-      <div className='user-basico'>
-        <div className="user-sexo">
-          <h4>Sexo</h4>
-          <p>{user.sexo}</p>
-        </div>
-        <div className="user-edad">
-          <h4>Edad</h4>
-          <p>{user.edad} años</p>
-        </div>
+        <div className="user-nombre">
+            <h3>Nombre</h3>
+            <p>{user.nombre}</p>
+          </div>
+          <div className="user-apellidos">
+            <h3>Apellidos</h3>
+            <p>{user.apellidos}</p>
+          </div>
+
       </div>
 
       <div className='user-informacion'>
+
+        <div className="user-telefono">
+            <h3>Telefono</h3>
+            <p>{user.telefono}</p>
+          </div>
+          <div className="user-email">
+            <h3>Email</h3>
+            <p>{user.email}</p>
+          </div>
+
+      </div>
+
+      <div className='user-basico'>
+        <div className="user-sexo">
+          <h3>Sexo</h3>
+          <p>{user.sexo}</p>
+        </div>
+        <div className="user-edad">
+          <h3>Edad</h3>
+          {user.edad ? <p>{user.edad} años</p> : null }
+        </div>
+      </div>
+
+      <div className='user-about'>
         
         <div className="user-sobremi">
           <h3>Sobre mi</h3>
