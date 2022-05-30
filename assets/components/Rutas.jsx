@@ -5,6 +5,7 @@ import Pisos from './Pisos';
 import Crearpiso from './Crearpiso';
 import User from './User';
 import UserEdit from './UserEdit';
+import Piso from './Piso';
 
 const myStorage = window.localStorage;
 
@@ -43,7 +44,7 @@ const Rutas = () => {
                     <Route path="crearpiso" element={<Crearpiso userGlobal={userGlobal} />} />
                     <Route path="user/:id" element={<User userGlobal={userGlobal} setUserGlobal={setUserGlobal} />} />
                     <Route path="user/:id/editar" element={<UserEdit userGlobal={userGlobal} setUserGlobal={setUserGlobal} />} />
-                    <Route path="piso/:id" element={<Crearpiso userGlobal={userGlobal} />} />
+                    <Route path="piso/:id" element={<Piso userGlobal={userGlobal} />} />
 
                 </Route>
             </Routes>

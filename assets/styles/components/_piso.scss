@@ -1,0 +1,47 @@
+.piso-container {
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.piso-header {
+    display: flex;
+    border-bottom: 1px solid black;
+
+}
+
+.piso-header-container {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: space-between;
+}
+
+.carousel-root {
+    width: 15rem;
+    
+}
+
+.piso-titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 2rem;
+
+    & a {
+        margin-bottom: 3rem;
+    }
+}
+
+.piso-miembros {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+
+    & .piso-listaMiembros {
+        border: 1px solid black;
+    }
+
+    & h2 {
+        text-align: center;
+    }
+}
