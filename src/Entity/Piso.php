@@ -30,8 +30,10 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
     ],
 )]
 /** 
-* @ApiFilter(SearchFilter::class, properties={"ciudad": "exact"})
+* @ApiFilter(SearchFilter::class, properties={"ciudad": "exact", "owner": "exact"})
 */
+
+
 
 #[ApiFilter(OrderFilter::class, properties: ['precio'], arguments: ['orderParameterName' => 'order'])]
 

@@ -23,6 +23,7 @@
     "dependencies": {
         "@babel/plugin-proposal-class-properties": "^7.16.7",
         "@babel/plugin-transform-runtime": "^7.17.10",
+        "bootstrap-icons": "^1.8.3",
         "react-responsive-carousel": "^3.2.23",
         "react-router-dom": "^6.3.0",
         "sass": "^1.51.0",

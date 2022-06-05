@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Piso;
+use App\Entity\User;
 use App\Repository\PisoRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
@@ -70,5 +71,88 @@ class PisoController extends AbstractController
         
         return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
         
+    }
+
+    #[Route('/piso/{piso}/addMyself', name: 'addMyself', methods: ['GET', 'POST'])]
+    public function addMyself(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Piso $piso): Response
+    {
+
+    if ($this->getUser()) {
+        $piso->addInteresado($this->getUser());
+
+        $entityManager->persist($piso);
+        $entityManager->flush();
+
+    }
+    
+        return $this->json($piso, Response::HTTP_OK, [], ['groups' => 'infoPisoIndividual']);
+    }
+
+    #[Route('/piso/{piso}/removeMyself', name: 'removeMyself', methods: ['GET', 'POST'])]
+    public function removeMyself(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Piso $piso): Response
+    {
+
+    if ($this->getUser()) {
+        $piso->removeInteresado($this->getUser());
+
+        $entityManager->persist($piso);
+        $entityManager->flush();
+
+    }
+    
+        return $this->json($piso, Response::HTTP_OK, [], ['groups' => 'infoPisoIndividual']);
+    }
+    
+
+    #[Route('/piso/{piso}/removeInteresado/{user}', name: 'removeInteresado', methods: ['GET', 'POST'])]
+    public function removeInteresado(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Piso $piso, User $user): Response
+    {
+
+    if ($user) {
+        $piso->removeInteresado($user);
+
+        $entityManager->persist($piso);
+        $entityManager->flush();
+
+    }
+    
+        return $this->json($piso, Response::HTTP_OK, [], ['groups' => 'infoPisoIndividual']);
+    }
+
+    #[Route('/piso/{piso}/addMiembro/{user}', name: 'addMiembro', methods: ['GET', 'POST'])]
+    public function addMiembro(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Piso $piso, User $user): Response
+    {
+
+        
+
+        if (count($piso->getMiembros()) >= $piso->getPlazas()) {
+            $piso->setEstado("Ocupado");
+        }
+        else {
+            $piso->addMiembro($user);
+            // $user->clearPisosInteresado();
+        }
+
+        $entityManager->persist($piso);
+        $entityManager->flush();
+
+    
+    
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'infoUserIndividual']);
+    }
+
+    #[Route('/piso/{piso}/removeMiembro/{user}', name: 'removeMiembro', methods: ['GET', 'POST'])]
+    public function removeMiembro(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Piso $piso, User $user): Response
+    {
+
+    if ($user) {
+        $piso->removeMiembro($user);
+
+        $entityManager->persist($piso);
+        $entityManager->flush();
+
+    }
+    
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'infoPisoIndividual']);
     }
 }

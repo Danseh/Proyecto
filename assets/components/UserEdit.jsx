@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
-const myStorage3 = window.localStorage;
+const myStorage3 = window.sessionStorage;
 
 const UserEdit = ({userGlobal, setUserGlobal}) => {
 
   const params = useParams();
-  const [user, setUser] = useState({});
 
   // estados form
   const [inputNombre, setInputNombre] = useState("");
@@ -223,7 +222,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
       </div>
 
       <div className='form-guardar'>
-        <input type="submit" value="Guardar" className="btn btn-lg btn-primary"/>
+        <input type="submit" value="Guardar" className="btn btn-lg btn-success" />
       </div>
       <div class="alert alert-success" data-dismiss="alert" role="alert">
         Perfil actualizado correctamente

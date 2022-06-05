@@ -1,9 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const myStorage2 = window.localStorage;
-const logoutUrl =  `/logout`;
-
 const Header = () => {
 
   return (

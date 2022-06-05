@@ -4,6 +4,15 @@
    
 }
 
+
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: black;
+    
+}
+
+
 .piso-header {
     display: flex;
     border-bottom: 1px solid black;
@@ -14,6 +23,37 @@
     display: flex;
     flex: 1 0 auto;
     justify-content: space-between;
+
+    & .btn {
+        margin-bottom: 1rem;
+    }
+
+    & .piso-titulo {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 2rem;
+    
+    }
+
+    & .piso-miembros {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        padding-right: 1rem;
+    
+        & .piso-listaMiembros {
+            border: 1px solid black;
+        }
+    
+        & h2 {
+            text-align: center;
+        }
+    }
+
+    & .h3 {
+        color: green;
+    }
 }
 
 .carousel-root {
@@ -21,27 +61,48 @@
     
 }
 
-.piso-titulo {
+.piso-content {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    margin-left: 2rem;
+    flex: 1 0 auto;
 
-    & a {
-        margin-bottom: 3rem;
+    & .piso-descripcion {
+        width: 30%;
+        padding-left: 1rem;
+        margin-top: 1rem;
+    
+        & h3 {
+            flex: 1 0 auto;
+            border-bottom: 1px solid black;
+            text-align: center;
+            padding-bottom: 1rem;
+        }
+    }
+
+    .piso-interesados {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        padding-right: 1rem;
+    
+        & .piso-listaInteresados {
+            border: 1px solid black;
+            
+            & li {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                padding: 0.3rem;
+
+                & button {
+                    margin-right: 1rem;
+                }
+            }
+        }
+    
+        & h2 {
+            text-align: center;
+        }
     }
 }
 
-.piso-miembros {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-
-    & .piso-listaMiembros {
-        border: 1px solid black;
-    }
-
-    & h2 {
-        text-align: center;
-    }
-}

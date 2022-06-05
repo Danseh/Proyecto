@@ -8,6 +8,9 @@ const Crearpiso = () => {
         if ($("#imagenes")[0].files.length>5) {
          alert("Solo puedes subir un máximo de 5 fotos del piso");
         }
+        else {
+         $("input[type='submit']").attr("disabled", false);
+        }
     });    
   });
 
@@ -50,7 +53,7 @@ const Crearpiso = () => {
           <input type="file" name="imagenes[]" id="imagenes" className="form-control"  multiple="multiple" required />
         </div>
                      
-        <input className="btn btn-lg btn-primary" type="submit" value="Crear"/>
+        <input className="btn btn-lg btn-primary" type="submit" value="Crear" disabled/>
   
 
 

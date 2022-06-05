@@ -14,11 +14,39 @@
       }
   }
 
+.formBuscador {
+    text-align: center;
+}
+.volver {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.alert {
+    margin-top: 1rem;
+    display: none;
+}
+
+.disponible {
+    color: green;
+
+}
+
+.ocupado {
+    color: red;
+}
+
 .piso {
     display: flex;
     margin-top: 1rem;
     border: 1px solid black;
+    border-radius: 3rem;
     color: black;
+
+    & img {
+        border-bottom-left-radius: 3rem;
+        border-top-left-radius: 3rem;
+    }
 
     & .piso-content {
         display: flex;
@@ -33,14 +61,7 @@
         justify-content: space-between;
         flex: 1 0 auto;
 
-        & .disponible {
-            color: green;
 
-        }
-
-        & .ocupado {
-            color: red;
-        }
     }
 
     & .piso-extra {
@@ -63,20 +84,9 @@
         }
     }
 
-    & a:link {
+    & a:link, a:visited, a:hover, a:active {
         text-decoration: none;
-      }
-      
-    & a:visited {
-        text-decoration: none;
-      }
-      
-    & a:hover {
-        text-decoration: none;
-      }
-      
-    & a:active {
-        text-decoration: none;
-      }
+        
+    }
 }
 

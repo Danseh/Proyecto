@@ -4,13 +4,6 @@
     align-items: space-between;
     justify-content: space-between;
 
-    & form {
-
-        & .alert {
-            display: none;
-        }
-    }
-
 
     & .user-header {
         display: flex;
@@ -35,7 +28,7 @@
     & .user-personal {
         display: flex;
         justify-content: space-around;
-
+        padding: 1rem;
         border-bottom: 1px solid black;
 
         & .user-nombre {
@@ -50,7 +43,7 @@
     & .user-informacion {
         display: flex;
         justify-content: space-around;
-        padding-top: 1rem;
+        padding: 1rem;
         border-bottom: 1px solid black;
 
         & .user-telefono {
@@ -74,7 +67,7 @@
     & .user-basico {
         display: flex;
         justify-content: space-around;
-        padding-top: 1rem;
+        padding: 1rem;
         border-bottom: 1px solid black;
 
         & .user-sexo {
@@ -90,7 +83,8 @@
     & .user-about {
         display: flex;
         justify-content: space-around;
-        padding-top: 1rem;
+        padding: 1rem;
+        border-bottom: 1px solid black;
 
         & .user-sobremi {
             width: 20%;
@@ -119,7 +113,6 @@
 
     & .form-guardar {
         padding: 1rem;
-        border-top: 1px solid black;
 
         & input[type="submit"] {
             display: block;

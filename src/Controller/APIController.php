@@ -21,13 +21,14 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class APIController extends AbstractController
 {
 
-    #[Route('api/login', name: 'api_login')]
+    #[Route('api/login', name: 'api_login', methods: ['GET', 'POST'])]
     public function login(): Response
     {
         if ($this->getUser()) {
             return $this->json($this->getUser(), Response::HTTP_OK, [], ['groups' => 'infoUser']);
         } 
     }
+
     
     #[Route('subirFoto', name: 'subirFoto')]
     public function subirFoto(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): void
