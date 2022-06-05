@@ -4,7 +4,7 @@ import Buscador from './Buscador';
 
 const url = `/api/pisos`;
 
-const Pisos = ({ userGlobal }) => {
+const Pisos = () => {
   const [jsonData, setJsonData] = useState({});
   const [pisos, setPisos] = useState([]);
   const [paginationInfo, setPaginationInfo] = useState({});
@@ -40,7 +40,7 @@ const Pisos = ({ userGlobal }) => {
   }, []);
 
   useEffect(() => {
-    console.log(jsonData);
+
     if ("hydra:member" in jsonData) {
       setPisos(jsonData["hydra:member"]);
     }
@@ -71,7 +71,7 @@ const Pisos = ({ userGlobal }) => {
                   <div className="piso-content">
                     <h2>{piso.titulo}</h2>
                       <div className="piso-info">
-                        <p>Situado en: {piso.ciudad}</p>
+                        <p>Ciudad: {piso.ciudad}</p>
                         <p>Estado: &nbsp;
                           {piso.estado === 'Disponible' ? 
                           <span className="disponible">Disponible</span> :

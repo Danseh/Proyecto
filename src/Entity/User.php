@@ -35,7 +35,7 @@ use Doctrine\Common\Collections\Collection;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
-    #[Groups(['infoUser'])]
+    #[Groups(['infoUser', 'infoUserIndividual'])]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
@@ -102,7 +102,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->pisosPublicados = new ArrayCollection();
-        $this->pisos = new ArrayCollection();
         $this->pisosInteresado = new ArrayCollection();
     }
 
@@ -352,4 +351,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    // public function clearPisosInteresado(): self
+    // {
+    //     $this->pisosInteresado->remove;
+
+    //     return $this;
+    // }
 }

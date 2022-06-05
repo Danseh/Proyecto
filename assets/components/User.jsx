@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+
+const myStorage4 = window.sessionStorage;
 
 const User = ({userGlobal}) => {
 
+  const navigate = useNavigate();
   const params = useParams();
   const [user, setUser] = useState({});
 
   const getInfoUser = async () => {
+    
     try {
       const url = `/api/users/${params.id}`;
       let respuesta = await fetch(url, {
@@ -18,17 +22,23 @@ const User = ({userGlobal}) => {
       let data = await respuesta.json();
       
       setUser(data);
-      
+
     } catch (e) {
       console.log(e);
     }
   }
 
+  const handleVolver = () => {
+    navigate(-1);
+  }
+
   useEffect(() => {
+    console.log(userGlobal);
     getInfoUser();
   }, [])
 
   return (
+    <>
     <div className="user-container">
       <div className="user-header">
         <div className="user-imagen">
@@ -42,7 +52,7 @@ const User = ({userGlobal}) => {
       
       <div className="user-titulo">
       <h1>Información personal</h1>
-          {userGlobal ? 
+          {userGlobal.id == user.id ? 
            <Link to={'editar'}>
            <button type="button" class="btn btn-dark">Editar perfil</button>
            </Link>:
@@ -99,6 +109,10 @@ const User = ({userGlobal}) => {
         </div>
       </div>
     </div>
+    <div className="volver">
+          <button className="btn btn-primary" onClick={handleVolver}>Volver</button>
+    </div>   
+    </>
   )
 }
 
