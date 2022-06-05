@@ -11,7 +11,6 @@ const UserMain = ({userGlobal,setUserGlobal}) => {
       <section className="main">
         <Outlet />
       </section>
-      {/* <Libros userGlobal={userGlobal}/> */}
     </section>
   )
 }
