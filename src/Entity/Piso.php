@@ -15,7 +15,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 #[ORM\Entity(repositoryClass: PisoRepository::class)]
 
 #[ApiResource(    
-    attributes: ["pagination_items_per_page" => 3],
+    attributes: ["pagination_items_per_page" => 8],
     collectionOperations: [
         'get' => [
             'method' => 'get',

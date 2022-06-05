@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
-    flex: 1 0 auto;
-    background-color: #9BA3EB;
+    flex: 1 0 50%;
+    background-color: #1c1f23;
+    color: white;
 
     & .buscador form {
         display: flex;
@@ -14,11 +15,43 @@
       }
   }
 
+a:link, a:visited, a:hover, a:active {
+text-decoration: none;
+color: white;
+    
+}
+
+.card {
+    color:black;
+    margin-left: 3rem;
+    margin-top: 1rem;
+    width: 18rem;
+
+}
+
+.pisos-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    & .paginacion {
+        display: flex;
+        margin-top: 2rem;
+        text-align: right;
+        justify-content: space-between;
+        
+        & button {
+            width: 48%;
+        }
+    }
+}
+
 .formBuscador {
     text-align: center;
 }
 .volver {
     text-align: center;
+    margin-bottom: 1rem;
     margin-top: 1rem;
 }
 
@@ -42,6 +75,8 @@
     border: 1px solid black;
     border-radius: 3rem;
     color: black;
+    font-size: 1rem;
+    background-color: white;
 
     & img {
         border-bottom-left-radius: 3rem;
@@ -71,22 +106,8 @@
 }
 
 .pisos {
-    display: flex;
-    flex-direction: column;
-
-    & .paginacion {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 1rem;
-        
-        & button {
-            width: 46%;
-        }
-    }
-
-    & a:link, a:visited, a:hover, a:active {
-        text-decoration: none;
-        
-    }
+    display: flex;   
+    flex-wrap: wrap;
+    margin-left: 3rem;
 }
 

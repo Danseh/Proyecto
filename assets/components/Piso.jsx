@@ -242,7 +242,7 @@ const Piso = ({userGlobal}) => {
       <div className="piso-header">
         <Carousel activeIndex={index} onSelect={handleSelect} dynamicHeight="True" width="100%">
           {imagenes.map((imagen) =>(
-              <div>
+              <div className="piso-imagen">
                 <img src={imagen} />
               </div>
 

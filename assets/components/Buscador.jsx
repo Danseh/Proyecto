@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const defaultUrl = `/api/piso?ciudad=Granada`;
+const defaultUrl = `/api/pisos`;
 
 const Buscador = ({ setJsonData }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -33,7 +33,7 @@ const Buscador = ({ setJsonData }) => {
   return (
     <form className="formBuscador" onSubmit={handleSubmit}>
       <input type="search" value={searchKeyword} onChange={handleChange} name="inputBuscador" className="form-control" id="inputBuscador" />
-      <button type="submit" name="btnBuscar" className="btn btn-primary mt-0 ml-2" id="btnBuscar">Buscar por Ciudad</button>
+      <button type="submit" name="btnBuscar" className="btn btn-info mt-0 ml-2" id="btnBuscar">Buscar por Ciudad</button>
     </form>
   )
 }

@@ -55,19 +55,26 @@ const Pisos = () => {
     }
   }, [jsonData])
 
+  $('.pisos').on('mouseenter', '.piso', function () {
+    $(this).css("border", "2px solid yellow");
+  });
+
+  $('.pisos').on('mouseleave', '.piso', function () {
+    $(this).css("border", "1px solid black");
+  });
 
   return (
     <>
-      <section className="buscador">
+      <div className="piso-ciudad">
 
         <h1>Pisos en {params.ciudad}</h1>
-      </section>
+      </div>
 
           <section className='pisos'>
             {pisos.map((piso) => (
               <Link to={'piso/' + piso.id.toString()} key={piso.id}>
                 <div className="piso" >
-                <img src={piso.imagenes[0]} width="200px" height="200px"/>
+                <img src={piso.imagenes[0]} width="150px" height="150px"/>
                   <div className="piso-content">
                     <h2>{piso.titulo}</h2>
                       <div className="piso-info">

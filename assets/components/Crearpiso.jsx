@@ -35,7 +35,7 @@ const Crearpiso = () => {
 
         <div className="form-group">
           <label htmlFor="inputDescripcion">Descripción</label>
-          <input type="text" name="descripcion" id="inputDescripcion" className="form-control" autoComplete="descripcion" required />
+          <textarea type="text" name="descripcion" id="inputDescripcion" className="form-control" autoComplete="descripcion" required />
         </div>
 
         <div className="form-group">

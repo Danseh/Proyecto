@@ -55,19 +55,44 @@ const Pisos = () => {
     }
   }, [jsonData])
 
+  $('.pisos').on('mouseenter', '.piso', function () {
+    $(this).css("border", "2px solid yellow");
+  });
+
+  $('.pisos').on('mouseleave', '.piso', function () {
+    $(this).css("border", "1px solid black");
+  });
+
+
 
   return (
     <>
+    <div className="pisos-content">
       <section className="buscador">
 
         <Buscador setJsonData={setJsonData} />
       </section>
+      
 
           <section className='pisos'>
             {pisos.map((piso) => (
               <Link to={'piso/' + piso.id.toString()} key={piso.id}>
-                <div className="piso" >
-                <img src={piso.imagenes[0]} width="200px" height="200px"/>
+                <div class="card">
+                  <img class="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
+                  <div class="card-body">
+                    <h5 class="card-title">{piso.titulo}</h5>
+                    <p class="card-text">{piso.direccion}</p>
+                    <p class="card-text">
+                    {piso.estado === 'Disponible' ? 
+                    <span className="disponible">Disponible</span> :
+                    <span className="ocupado">Ocupado</span>}
+                    </p>
+
+                  </div>
+                </div>
+
+                {/* <div className="piso" >
+                <img src={piso.imagenes[0]} width="150px" height="150px"/>
                   <div className="piso-content">
                     <h2>{piso.titulo}</h2>
                       <div className="piso-info">
@@ -87,10 +112,10 @@ const Pisos = () => {
                           null}
                       </div>
                   </div>
-                </div>
+                </div> */}
               </Link>
             ))}
-
+        </section>
         <div className="paginacion">
 
         {multiplePages ?
@@ -109,7 +134,8 @@ const Pisos = () => {
 
 
       </div>
-      </section>
+        </div>
+      
     </>
   )
 }
