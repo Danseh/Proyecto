@@ -6,11 +6,12 @@ body {
     font-family: "body";
     font-size: 0.9rem;
     min-width: 375px;
+    background-color: #1c1f23;
 }
 
 header {
     display: flex;
-    background-color: white;
+    background-color: #494c50;
     align-items: center;
     justify-content: space-between;
     
@@ -20,7 +21,8 @@ header {
     display: flex;
     flex: 1 0 auto;
     justify-content: space-between;  
-    border: 1px solid black;
+    
+    margin-top: 1rem;
   }
   
 

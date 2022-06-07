@@ -7,6 +7,7 @@ import User from './User';
 import UserEdit from './UserEdit';
 import Piso from './Piso';
 import PisosCiudad from './PisosCiudad';
+import PisosPublicados from './PisosPublicados';
 
 
 const myStorage = window.sessionStorage;
@@ -78,7 +79,8 @@ const Rutas = () => {
             <Routes>
                 <Route path="/" element={<Layout userGlobal={userGlobal} setUserGlobal={setUserGlobal}/>}>
                     <Route index element={<Pisos />} />
-                    <Route path="crearpiso" element={<Crearpiso userGlobal={userGlobal} />} />
+                    <Route path="crearpiso" element={<Crearpiso />} />
+                    <Route path="pisosPublicados" element={<PisosPublicados />} />
                     <Route path="user/:id" element={<User userGlobal={userGlobal} />} />
                     <Route path="user/:id/editar" element={<UserEdit userGlobal={userGlobal} setUserGlobal={setUserGlobal} />} />
                     <Route path="piso/:id" element={<Piso userGlobal={userGlobal} />} />

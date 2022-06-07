@@ -17,8 +17,8 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
   const [inputInformacion, setInputInformacion] = useState("");
   const [inputGustos, setInputGustos] = useState("");
   const [fotoPerfil, setFotoPerfil] = useState("");
-
-  $
+  const [user, setUser] = useState({});
+  
 
   const getInfoUser = async () => {
     try {
@@ -30,6 +30,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
       });
       
       let data = await respuesta.json();
+      setUser(data);
       
       setInputNombre(data.nombre);
       setInputApellidos(data.apellidos);
@@ -136,7 +137,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
 
   useEffect(() => {
     getInfoUser();
-
+    console.log(userGlobal);
   }, [])
 
   $(document).ready(
@@ -162,7 +163,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
             <input type="file" id="fotoPerfil" onChange={handleChangeImagen} name="fotoPerfil"/>
           </form>
         </div>
-        <h1>{userGlobal.nombre} {userGlobal.apellidos}</h1>
+        <h1>{user.nombre} {user.apellidos}</h1>
       </div>
 
       <div className="user-titulo">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const myStorage2 = window.sessionStorage;
+const myStoragePanel = window.sessionStorage;
 const logoutUrl =  `/logout`;
 
 const Panel = ({userGlobal, setUserGlobal}) => {
@@ -17,7 +17,7 @@ const Panel = ({userGlobal, setUserGlobal}) => {
   const handleLogout = (e) => {
     e.preventDefault();
     logout(logoutUrl);
-    myStorage2.removeItem('loggedUser');
+    myStoragePanel.removeItem('loggedUser');
     setUserGlobal(false);
   }
 
@@ -50,6 +50,11 @@ const Panel = ({userGlobal, setUserGlobal}) => {
               <li>
                 <Link to="/crearpiso">
                 <button type="button" class="btn btn-dark">Publicar piso</button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/pisosPublicados">
+                <button type="button" class="btn btn-dark">Mis pisos publicados</button>
                 </Link>
               </li>
               <li>

@@ -3,14 +3,14 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
-const myStorage5 = window.sessionStorage;
+const myStoragePiso = window.sessionStorage;
 
 const Piso = ({userGlobal}) => {
   
   const navigate = useNavigate();
   const params = useParams();
   // const user = JSON.parse(myStorage5.getItem('loggedUser'));
-  const [user, setUser] = useState(JSON.parse(myStorage5.getItem('loggedUser')));
+  const [user, setUser] = useState(JSON.parse(myStoragePiso.getItem('loggedUser')));
   const [piso, setPiso] = useState({});
   const [imagenes, setImagenes] = useState([]);
   const [miembros, setMiembros] = useState([]);
@@ -276,7 +276,7 @@ const Piso = ({userGlobal}) => {
 
             </div>
             
-            {miembros.length > 0 ?
+            {miembros.length ?
             <div className="piso-miembros">
                 <h2>Miembros</h2>
                 <ul>
@@ -306,7 +306,7 @@ const Piso = ({userGlobal}) => {
          
         {soyOwner ?
 
-        interesados.length > 0?
+        interesados.length ?
         <div className="piso-interesados">
                 <h2>Interesados</h2>
                 <ul>

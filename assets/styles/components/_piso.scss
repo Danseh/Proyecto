@@ -1,9 +1,8 @@
-.piso-container {
+.pisos-content {
     display: flex;
     flex-direction: column;
-    background-color: white;
     flex: 1 0 auto;
-    color: black;
+    
 }
 
 .piso-ciudad {
@@ -41,6 +40,17 @@
     
         & .piso-listaMiembros {
             border: 1px solid black;
+
+            & li {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                padding: 0.3rem;
+
+                & button {
+                    margin-right: 1rem;
+                }
+            }
         }
     
         & h2 {
@@ -81,6 +91,7 @@
             text-align: center;
             padding-bottom: 1rem;
         }
+
     }
 
     .piso-interesados {

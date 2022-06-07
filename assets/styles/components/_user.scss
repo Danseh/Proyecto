@@ -5,6 +5,16 @@
     justify-content: space-between;
     color: white;
     flex: 1 0 auto;
+    background-color: #494c50;
+    padding: 0.5rem;
+
+    & input {
+        margin-bottom: 0.5rem;
+    }
+
+    & textarea {
+        margin-bottom: 0.5rem;
+    }
 
     & .user-header {
         display: flex;
@@ -17,12 +27,15 @@
     & .user-titulo {
         display: flex;
         justify-content: space-around;
-        border-bottom: 1px solid white;
         margin-top: 1rem;
 
         & h1 {
             flex: 1 0 auto;
             
+        }
+
+        & button {
+            background-color: #ffbf75;
         }
     }
 
@@ -30,21 +43,20 @@
         display: flex;
         justify-content: space-around;
         padding: 1rem;
-        border-bottom: 1px solid white;
+        
         text-align: center;
 
         & .user-nombre {
             width: 20%;
-            background-color: white;
-            color: black;
-            border-radius: 2rem;
+            color: white;
+            border-bottom: 1px solid white;
+
         }
 
         & .user-apellidos {
             width: 20%;
-            background-color: white;
-            color: black;
-            border-radius: 2rem;
+            color: white;
+            border-bottom: 1px solid white;
         }
     }
 
@@ -52,20 +64,19 @@
         display: flex;
         justify-content: space-around;
         padding: 1rem;
-        border-bottom: 1px solid white;
         text-align: center;
 
         & .user-telefono {
             width: 20%;
-            background-color: white;
-            color: black;
+            color: white;
+            border-bottom: 1px solid white;
             
         }
 
         & .user-email {
             width: 20%;
-            background-color: white;
-            color: black;
+            color: white;
+            border-bottom: 1px solid white;
            
         }
     }
@@ -81,20 +92,20 @@
         display: flex;
         justify-content: space-around;
         padding: 1rem;
-        border-bottom: 1px solid white;
         text-align: center;
 
         & .user-sexo {
             width: 20%;
-            background-color: white;
-            color: black;
-            
+            color: white;
+            border-bottom: 1px solid white;
+
         }
 
         & .user-edad {
             width: 20%;
-            background-color: white;
-            color: black;
+            color: white;
+            border-bottom: 1px solid white;
+
         }
     }
 
@@ -102,20 +113,19 @@
         display: flex;
         justify-content: space-around;
         padding: 1rem;
-        border-bottom: 1px solid white;
         text-align: center;
 
         & .user-sobremi {
             width: 20%;
-            background-color: white;
-            color: black;
+            color: white;
+            border-bottom: 1px solid white;
 
         }
 
         & .user-gustos {
             width: 20%;
-            background-color: white;
-            color: black;
+            color: white;
+            border-bottom: 1px solid white;
         }
 
         & textarea {

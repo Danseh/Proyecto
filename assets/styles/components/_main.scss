@@ -3,15 +3,20 @@
     flex-direction: column;
     padding: 0.5rem;
     flex: 1 0 50%;
-    background-color: #1c1f23;
+    background-color: #1c1f23 !important;
     color: white;
 
     & .buscador form {
         display: flex;
+        justify-content: center;
 
         & input[type="search"] {
             width: 30rem;
           }
+
+        & button {
+            margin-left: 1rem;
+        }
       }
   }
 

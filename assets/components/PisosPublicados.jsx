@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Buscador from './Buscador';
 
-const url = `/api/pisos`;
+const myStoragePisosPublicados = window.sessionStorage;
 
-const Pisos = () => {
-  const params = useParams();
+const PisosPublicados = () => {
   const [jsonData, setJsonData] = useState({});
   const [pisos, setPisos] = useState([]);
   const [paginationInfo, setPaginationInfo] = useState({});
   const [multiplePages, setMultiplePages] = useState(false);
+  const [user, setUser] = useState(JSON.parse(myStoragePisosPublicados.getItem('loggedUser')));
+  const [tienePisos, setTienePisos] = useState([]);
 
-
-  const getInfo = async (url) => {
+  const getInfo = async () => {
     try {
-      let respuesta = await fetch(`${url}?ciudad=${params.ciudad}`);
+      const url = `/api/pisos?owner=${user.id}`;
+      let respuesta = await fetch(url);
       let data = await respuesta.json();
-      //console.log(data);
+      setTienePisos(data["hydra:member"]);
+        
       setJsonData(data);
+      
+
       
     } catch (error) {
       console.log(error);
@@ -36,7 +41,7 @@ const Pisos = () => {
   }
 
   useEffect(() => {
-    getInfo(url);
+    getInfo();
   }, []);
 
   useEffect(() => {
@@ -63,13 +68,17 @@ const Pisos = () => {
     $(this).css("border", "1px solid black");
   });
 
+
+
   return (
     <>
-      <div className="piso-ciudad">
+    <div className="pisos-content">
+      <section className="buscador">
 
-        <h1>Pisos en {params.ciudad}</h1>
-      </div>
-
+        <Buscador setJsonData={setJsonData} />
+      </section>
+      
+          {tienePisos.length ?
           <section className='pisos'>
             {pisos.map((piso) => (
               <Link to={'piso/' + piso.id.toString()} key={piso.id}>
@@ -86,32 +95,10 @@ const Pisos = () => {
 
                   </div>
                 </div>
-
-                {/* <div className="piso" >
-                <img src={piso.imagenes[0]} width="150px" height="150px"/>
-                  <div className="piso-content">
-                    <h2>{piso.titulo}</h2>
-                      <div className="piso-info">
-                        <p>Ciudad: {piso.ciudad}</p>
-                        <p>Estado: &nbsp;
-                          {piso.estado === 'Disponible' ? 
-                          <span className="disponible">Disponible</span> :
-                          <span className="ocupado">Ocupado</span>}
-                        </p>
-                        
-                        <p>Plazas: {piso.miembros.length} / {piso.plazas}</p>
-                      </div>
-                      <div className="piso-extra">
-                        <h2>{piso.precio}€/mes</h2>
-                        {piso.estado === 'Ocupado' ? 
-                          <p>Fecha disponibilidad: 27/05/1994{piso.fechaDisponible}</p> :
-                          null}
-                      </div>
-                  </div>
-                </div> */}
               </Link>
             ))}
-
+        </section>
+        : <h1 align="center">Aún no has publicado ningún piso</h1>}
         <div className="paginacion">
 
         {multiplePages ?
@@ -130,9 +117,10 @@ const Pisos = () => {
 
 
       </div>
-      </section>
+        </div>
+      
     </>
   )
 }
 
-export default Pisos
+export default PisosPublicados
