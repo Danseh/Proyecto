@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-const myStorage4 = window.sessionStorage;
 
 const User = ({userGlobal}) => {
 
@@ -54,7 +53,7 @@ const User = ({userGlobal}) => {
       <h1>Información personal</h1>
           {userGlobal.id == user.id ? 
            <Link to={'editar'}>
-           <button type="button" class="btn btn-dark">Editar perfil</button>
+           <button type="button" class="btn">Editar perfil</button>
            </Link>:
            null
           }
@@ -108,10 +107,10 @@ const User = ({userGlobal}) => {
           <p>{user.gustos}</p>
         </div>
       </div>
-    </div>
     <div className="volver">
           <button className="btn btn-primary" onClick={handleVolver}>Volver</button>
     </div>   
+    </div>
     </>
   )
 }
