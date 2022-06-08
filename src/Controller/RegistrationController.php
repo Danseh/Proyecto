@@ -31,6 +31,8 @@ class RegistrationController extends AbstractController
             );
             $user->setNombre($form->get('nombre')->getData());
             $user->setApellidos($form->get('apellidos')->getData());
+            $user->setEmail($form->get('email')->getData());
+            $user->setSexo($form->get('sexo')->getData());
 
             $entityManager->persist($user);
             $entityManager->flush();

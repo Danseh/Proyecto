@@ -10,7 +10,7 @@ const Header = () => {
       
       
         <img id="logo" src="/img/logo.png" alt="logo1" width="200px" height="150px" />
-        <img id="logo" src="/img/logo1.png" alt="logo2" width="500px" height="100px"/>
+        <img id="logo" src="/img/logo122.png" alt="logo2" width="500px" height="100px"/>
         <img id="logo" src="/img/logo.png" alt="logo1" width="200px" height="150px" />
         
         {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

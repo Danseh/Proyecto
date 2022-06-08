@@ -130,7 +130,11 @@ class PisoController extends AbstractController
         }
         else {
             $piso->addMiembro($user);
-            // $user->clearPisosInteresado();
+            $piso->removeInteresado($user);
+        }
+
+        if (count($piso->getMiembros()) >= $piso->getPlazas()) {
+            $piso->setEstado("Ocupado");   
         }
 
         $entityManager->persist($piso);
@@ -147,6 +151,7 @@ class PisoController extends AbstractController
 
     if ($user) {
         $piso->removeMiembro($user);
+        $piso->setEstado("Disponible");
 
         $entityManager->persist($piso);
         $entityManager->flush();

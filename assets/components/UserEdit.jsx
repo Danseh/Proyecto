@@ -70,9 +70,10 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
 
       setUserGlobal(data);
 
-
       myStorage3.setItem('loggedUser', JSON.stringify(data));
 
+      setUser(data);
+      
     } catch (error) {
       console.log(error);
     }
@@ -150,6 +151,8 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
   );
 
   return (
+    <>
+    {userGlobal.id == user.id ?
     <div className="user-container">
 
       <div className="user-header">
@@ -176,11 +179,11 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
       <div className='user-personal'>
         <div className="user-nombre">
           <h3>Nombre</h3>
-          <input type="text" value={inputNombre} onChange={handleChange} name="nombre"/>
+          <input type="text" value={inputNombre} onChange={handleChange} name="nombre" pattern="[a-zA-Z]{1,15}" title="El nombre solo puede contener letras"/>
         </div>
         <div className="user-apellidos">
           <h3>Apellidos</h3>
-          <input type="text" value={inputApellidos} onChange={handleChange} name="apellidos"/>
+          <input type="text" value={inputApellidos} onChange={handleChange} name="apellidos" pattern="[a-zA-Z]{1,15}" title="Los apellidos solo pueden contener letras"/>
         </div>
       </div>
 
@@ -191,7 +194,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
         </div>
         <div className="user-email">
           <h3>Email</h3>
-          <input type="email" value={inputEmail} onChange={handleChange} name="email"/>
+          <input type="email" value={inputEmail} onChange={handleChange} name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Introduce un email válido"/>
         </div>
       </div>
 
@@ -232,7 +235,10 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
         Perfil actualizado correctamente
       </div>
       </form>
+
     </div>
+    : null }
+    </>
   )
 }
 

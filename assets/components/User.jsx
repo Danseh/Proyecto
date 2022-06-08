@@ -7,6 +7,7 @@ const User = ({userGlobal}) => {
   const navigate = useNavigate();
   const params = useParams();
   const [user, setUser] = useState({});
+  const [soyAdmin, setSoyAdmin] = useState(false);
 
   const getInfoUser = async () => {
     
@@ -19,6 +20,10 @@ const User = ({userGlobal}) => {
       });
       
       let data = await respuesta.json();
+
+      if (data.roles.includes("ROLE_ADMIN")) {
+        setSoyAdmin(true);
+      }
       
       setUser(data);
 
@@ -51,7 +56,7 @@ const User = ({userGlobal}) => {
       
       <div className="user-titulo">
       <h1>Información personal</h1>
-          {userGlobal.id == user.id ? 
+          {userGlobal.id == user.id || soyAdmin ? 
            <Link to={'editar'}>
            <button type="button" class="btn">Editar perfil</button>
            </Link>:

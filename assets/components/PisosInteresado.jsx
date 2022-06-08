@@ -2,21 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Buscador from './Buscador';
 
-const url = `/api/pisos`;
+const myStoragePisosInteresado = window.sessionStorage;
 
 const Pisos = () => {
   const [jsonData, setJsonData] = useState({});
   const [pisos, setPisos] = useState([]);
   const [paginationInfo, setPaginationInfo] = useState({});
   const [multiplePages, setMultiplePages] = useState(false);
+  const [user, setUser] = useState(JSON.parse(myStoragePisosInteresado.getItem('loggedUser')));
 
 
-  const getInfo = async (url) => {
+  const getInfoUser = async (url) => {
     try {
+      const url = `/api/users/${user.id}`;
       let respuesta = await fetch(url);
       let data = await respuesta.json();
       //console.log(data);
-      setJsonData(data);
+      if (data.pisosInteresado) {
+
+        data.pisosInteresado.forEach(async (piso) => {
+        
+          let respuestaPisos = await fetch(piso, {
+            headers: {
+              'Accept': 'application/json',
+            },
+          });
+          
+          let nuevoPiso = await respuestaPisos.json();
+    
+          console.log(nuevoPiso);
+          
+          setPisos(prevPiso => [...prevPiso, nuevoPiso]);
+    
+        })
+      }
       
     } catch (error) {
       console.log(error);
@@ -62,7 +81,6 @@ const Pisos = () => {
   $('.card').on('mouseleave', '.piso', function () {
     $(this).css("border", "1px solid black");
   });
-
 
 
   return (

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import Pisos from './Pisos';
 
 const myStoragePiso = window.sessionStorage;
+let urlUser = "";
 
 const Piso = ({userGlobal}) => {
   
@@ -19,12 +21,19 @@ const Piso = ({userGlobal}) => {
   const [soyOwner, setSoyOwner] = useState(false);
   const [soyMiembro, setSoyMiembro] = useState(false);
   const [soyInteresado, setSoyInteresado] = useState(false);
+  const [soyAdmin, setSoyAdmin] = useState(false);
 
   const getInfoPiso = async () => {
     try {
       const url = `/api/pisos/${params.id}`;
 
-      const urlUser = `/api/users/${user.id}`;
+      if (user) {
+        urlUser = `/api/users/${user.id}`;
+        
+        if (user.roles.includes("ROLE_ADMIN")) {
+          setSoyAdmin(true);
+        }
+      }
 
       let respuesta = await fetch(url, {
         headers: {
@@ -39,23 +48,6 @@ const Piso = ({userGlobal}) => {
 
 
       setImagenes(data.imagenes);
-      
-    //obtener interesados  
-    data.interesados.forEach(async (interesado) => {
-        
-        let respuestaInteresado = await fetch(interesado, {
-          headers: {
-            'Accept': 'application/json',
-          },
-        });
-        
-        let nuevoInteresado = await respuestaInteresado.json();
-
-        console.log(nuevoInteresado);
-        
-        setInteresados(prevInteresado => [...prevInteresado, nuevoInteresado]);
-
-    })
 
     //obtener miembros
     data.miembros.forEach(async (miembro) => {
@@ -74,6 +66,25 @@ const Piso = ({userGlobal}) => {
 
     })
 
+    if (user) {
+    //obtener interesados  
+    data.interesados.forEach(async (interesado) => {
+        
+        let respuestaInteresado = await fetch(interesado, {
+          headers: {
+            'Accept': 'application/json',
+          },
+        });
+        
+        let nuevoInteresado = await respuestaInteresado.json();
+
+        console.log(nuevoInteresado);
+        
+        setInteresados(prevInteresado => [...prevInteresado, nuevoInteresado]);
+
+    })
+
+
       //check owner
       
       console.log(user);
@@ -90,13 +101,14 @@ const Piso = ({userGlobal}) => {
         }
       })
 
-      
+    }
     } catch (e) {
       console.log(e);
     }
   }
 
   const checkPiso = async () => {
+    if (user) {
       //check tengo piso
       let respuestaUser = await fetch(urlUser, {
         headers: {
@@ -110,6 +122,7 @@ const Piso = ({userGlobal}) => {
         setSoyMiembro(true);
       }
   }
+}
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -187,13 +200,20 @@ const Piso = ({userGlobal}) => {
 
       let data = await respuesta.json();
 
-      if (respuesta.status === 200) {
-        $('.addMiembro').show();
+      if (miembros.length < piso.plazas) {
+        if (respuesta.status === 200) {
+          $('.addMiembro').show();
+        }
+        
+        setMiembros(prevMiembro => [...prevMiembro, data]);
+  
+        setInteresados((interesados) => interesados.filter(interesado => interesado.id != data.id ));
       }
-      
-      setMiembros(prevMiembro => [...prevMiembro, data]);
+      else {
+        alert ("El piso ya esta lleno");
+      }
 
-      setInteresados((interesados) => interesados.filter(interesado => interesado.id != data.id ));
+
 
     } catch (e) {
       console.log(e);
@@ -229,9 +249,8 @@ const Piso = ({userGlobal}) => {
   }
 
   useEffect(() => {
-
-    checkPiso();
     getInfoPiso();
+    checkPiso();
 
   }, [])
 
@@ -240,6 +259,7 @@ const Piso = ({userGlobal}) => {
     <div className="piso-container">
     
       <div className="piso-header">
+
         <Carousel activeIndex={index} onSelect={handleSelect} dynamicHeight="True" width="100%">
           {imagenes.map((imagen) =>(
               <div className="piso-imagen">
@@ -257,7 +277,7 @@ const Piso = ({userGlobal}) => {
               {piso.ciudad}
             </Link>
             </p>
-            <p>Plazas ocupadas: {miembros.length} / {piso.plazas}</p>
+            <p>Plazas ocupadas: {miembros.length} / {piso.plazas} {piso.id}</p>
             
             <p>Estado: &nbsp;
             {piso.estado === 'Disponible' ? 
@@ -276,13 +296,21 @@ const Piso = ({userGlobal}) => {
 
             </div>
             
+            {soyOwner || soyAdmin ?
+            <div className="piso-control">
+              <a href="eliminar" className="btn">Eliminar Piso</a>
+              <Link to={'editar'}>
+              <button type="button" className="btn">Editar Piso</button>
+              </Link>
+            </div>
+            : null }
             {miembros.length ?
             <div className="piso-miembros">
                 <h2>Miembros</h2>
                 <ul>
                 <div className="piso-listaMiembros">
                   {miembros.map((miembro) => 
-                    <li><Link to={'/user/' + miembro.id.toString()}> {miembro.nombre}</Link>
+                    <li><Link to={'/user/' + miembro.id.toString()}><i class="bi bi-person"></i>{miembro.nombre} {miembro.apellidos}</Link>
                     {userGlobal ?
                     soyOwner || miembro.id == user.id ? <div className="miembros-buttons">
                       <button className="btn btn-danger" onClick={()=>removeMiembro(miembro.id)}><i class='bi bi-x'></i></button>
@@ -313,14 +341,21 @@ const Piso = ({userGlobal}) => {
                 <div className="piso-listaInteresados">
                   
                   {interesados.map((interesado) => 
-                    <li><Link to={'/user/' + interesado.id.toString()}> {interesado.nombre} {interesado.apellidos}</Link>
+                    <li>
+                    <Link to={'/user/' + interesado.id.toString()}><i class="bi bi-person"></i> {interesado.nombre} {interesado.apellidos}</Link>
                     {userGlobal ?
-                    soyOwner ? <div className="interesados-buttons">
+                    soyOwner ? 
+                    interesado.piso == null ? <div className="interesados-buttons">
+                      
                       <button className="btn btn-success" onClick={()=>addMiembro(interesado.id)}><i class='bi bi-check'></i></button>
                       <button className="btn btn-danger" onClick={()=>removeInteresado(interesado.id)}><i class='bi bi-x'></i></button>
                       </div> :
 
-                      null : null}
+                      <div className="interesados-buttons">
+
+                      <button className="btn-sm btn-danger" onClick={()=>removeInteresado(interesado.id)}><i class='bi bi-x'></i></button>
+                      </div>
+                       : null : null}
                     
                       </li>
                     

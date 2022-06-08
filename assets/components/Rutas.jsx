@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import Pisos from './Pisos';
 import Crearpiso from './Crearpiso';
@@ -21,7 +21,7 @@ const Rutas = () => {
 
         let session = myStorage.getItem('loggedUser');
     
-        if (session == null) {
+        if (session == null || session == false) {
 
             myStorage.removeItem('loggedUser');
             try {
@@ -79,10 +79,14 @@ const Rutas = () => {
             <Routes>
                 <Route path="/" element={<Layout userGlobal={userGlobal} setUserGlobal={setUserGlobal}/>}>
                     <Route index element={<Pisos />} />
-                    <Route path="crearpiso" element={<Crearpiso />} />
+                    {userGlobal ?
+                    <Route path="crearpiso" element={<Crearpiso />} /> : 
+                    <Route path="crearpiso" element={<Navigate replace to="/"/>} />}
                     <Route path="pisosPublicados" element={<PisosPublicados />} />
                     <Route path="user/:id" element={<User userGlobal={userGlobal} />} />
-                    <Route path="user/:id/editar" element={<UserEdit userGlobal={userGlobal} setUserGlobal={setUserGlobal} />} />
+                    {userGlobal ?
+                    <Route path="user/:id/editar" element={<UserEdit userGlobal={userGlobal} setUserGlobal={setUserGlobal} />} /> :
+                    <Route path="crearpiso" element={<Navigate replace to="/"/>} />}
                     <Route path="piso/:id" element={<Piso userGlobal={userGlobal} />} />
                     <Route path="pisos/:ciudad" element={<PisosCiudad />} />
 

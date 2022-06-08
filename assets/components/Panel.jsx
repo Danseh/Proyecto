@@ -1,10 +1,46 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const myStoragePanel = window.sessionStorage;
 const logoutUrl =  `/logout`;
 
 const Panel = ({userGlobal, setUserGlobal}) => {
+
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState(JSON.parse(myStoragePiso.getItem('loggedUser')));
+  const [piso, setPiso] = useState({});
+
+  const getUserPiso = async () => {
+    try {
+      const url = `/api/users/${user.id}`;
+      let respuesta = await fetch(url, {
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
+      
+      let data = await respuesta.json();
+
+      if (data.piso) {
+      let respuestaPiso = await fetch(data.piso, {
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
+      
+      let dataPiso = await respuestaPiso.json();
+      console.log(dataPiso);
+      setPiso(dataPiso);
+
+    }
+
+
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   const logout = async (url) => {
     try {
@@ -19,6 +55,8 @@ const Panel = ({userGlobal, setUserGlobal}) => {
     logout(logoutUrl);
     myStoragePanel.removeItem('loggedUser');
     setUserGlobal(false);
+
+    navigate("/");
   }
 
   useEffect(() => {
@@ -59,6 +97,22 @@ const Panel = ({userGlobal, setUserGlobal}) => {
               </li>
               <li>
                 <button type="button" class="btn btn-dark" onClick={handleLogout}>Cerrar sesión</button>
+              </li>
+              <li>
+              <Link to={'piso/' + piso.id.toString()} key={piso.id}>
+                <div class="card">
+                  <img class="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
+                  <div class="card-body">
+                    <h5 class="card-title">{piso.titulo}</h5>
+                    <p class="card-text">{piso.direccion}</p>
+                    <p class="card-text">
+                    {piso.estado === 'Disponible' ? 
+                    <span className="disponible">Disponible</span> :
+                    <span className="ocupado">Ocupado</span>}
+                    </p>
+                  </div>
+                </div>
+              </Link>
               </li>
             </ul>
           : null}

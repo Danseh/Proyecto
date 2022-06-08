@@ -1,0 +1,62 @@
+.register-container {
+    display: flex;
+    flex: 1 0 auto;
+    background: url("../img/portada.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+img {
+    width: 60%;
+}
+
+.register-form {
+    display: flex;
+    padding: 1rem;
+    width: 30%;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background: url("../img/fondo.png");
+    background-size: cover;
+
+}
+
+.register-form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+label {
+    font-size: 2rem;
+    margin: 0 auto;
+}
+
+.formField {
+    text-align: center;
+}
+
+input {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+select {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+h1 {
+    color: white;
+    margin-bottom: 1rem;
+}
