@@ -60,11 +60,11 @@ const PisosPublicados = () => {
     }
   }, [jsonData])
 
-  $('.pisos').on('mouseenter', '.piso', function () {
-    $(this).css("border", "2px solid yellow");
+  $('.card').on('mouseenter', '.piso', function () {
+    $(this).css("border", "2px solid #ffbf75 ");
   });
 
-  $('.pisos').on('mouseleave', '.piso', function () {
+  $('.card').on('mouseleave', '.piso', function () {
     $(this).css("border", "1px solid black");
   });
 
