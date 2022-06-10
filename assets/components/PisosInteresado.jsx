@@ -10,6 +10,7 @@ const PisosInteresado = () => {
   const [paginationInfo, setPaginationInfo] = useState({});
   const [multiplePages, setMultiplePages] = useState(false);
   const [user, setUser] = useState(JSON.parse(myStoragePisosInteresado.getItem('loggedUser')));
+  const [tienePisos, setTienePisos] = useState(false);
 
 
   const getInfoUser = async () => {
@@ -19,7 +20,7 @@ const PisosInteresado = () => {
       let data = await respuesta.json();
       //console.log(data);
       if (data.pisosInteresado) {
-
+        setTienePisos(true);
         data.pisosInteresado.forEach(async (piso) => {
         
           let respuestaPisos = await fetch(piso, {
@@ -95,8 +96,8 @@ const PisosInteresado = () => {
             <h1>Pisos en los que estoy interesado</h1> 
           </div>
 
+          {tienePisos.length ?
           <section className='pisos'>
-
             {pisos.map((piso) => (
               
               <Link to={'/piso/' + piso.id.toString()} key={piso.id}>
@@ -116,6 +117,7 @@ const PisosInteresado = () => {
               </Link>
             ))}
         </section>
+        : <h1 align="center">Aún no estás interesado en ningún titulo ningún piso</h1>}
         <div className="paginacion">
 
         {multiplePages ?
