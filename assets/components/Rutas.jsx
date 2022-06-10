@@ -9,6 +9,7 @@ import Piso from './Piso';
 import PisosCiudad from './PisosCiudad';
 import PisosPublicados from './PisosPublicados';
 import PisosInteresado from './PisosInteresado';
+import EditarPiso from './EditarPIso';
 
 
 const myStorage = window.sessionStorage;
@@ -89,6 +90,7 @@ const Rutas = () => {
                     <Route path="user/:id/editar" element={<UserEdit userGlobal={userGlobal} setUserGlobal={setUserGlobal} />} /> :
                     <Route path="crearpiso" element={<Navigate replace to="/"/>} />}
                     <Route path="piso/:id" element={<Piso userGlobal={userGlobal} />} />
+                    <Route path="piso/:id/editar" element={<EditarPiso />} />
                     <Route path="pisos/:ciudad" element={<PisosCiudad />} />
                     <Route path="pisosInteresado" element={<PisosInteresado />} />
                     <Route path="*" element={<Navigate replace to="/"/>} />

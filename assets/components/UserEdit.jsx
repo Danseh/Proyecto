@@ -18,7 +18,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
   const [inputGustos, setInputGustos] = useState("");
   const [fotoPerfil, setFotoPerfil] = useState("");
   const [user, setUser] = useState({});
-  
+  const [soyAdmin, setSoyAdmin] = useState(false);
 
   const getInfoUser = async () => {
     try {
@@ -41,6 +41,10 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
       setInputInformacion(data.informacion);
       setInputGustos(data.gustos);
       setFotoPerfil(data.foto);
+
+      if (data.roles.includes("ROLE_ADMIN")){
+        setSoyAdmin(true);
+      }
       
     } catch (e) {
       console.log(e);
@@ -152,7 +156,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
 
   return (
     <>
-    {userGlobal.id == user.id ?
+    {userGlobal.id == user.id || soyAdmin ?
     <div className="user-container">
 
       <div className="user-header">
@@ -237,7 +241,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
       </form>
 
     </div>
-    : null }
+    : <h2>No tienes permiso para editar este usuario</h2> }
     </>
   )
 }
