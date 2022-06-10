@@ -35,11 +35,30 @@
     & .piso-control {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: flex-start;
 
-        & .btn {
-            background-color: #ffbf75;
+        & .dropdown {
+
+            & ul {
+                background-color: #494c50;
+            }
+
+            & .btn {
+                background-color: #ffbf75;
+                color: black;
+           }
+
+           & a:hover {
+            background-color: black;
+           }
+
+           & .dropdown-divider {
+               color: #ffbf75;
+           }
+           
         }
+
+
     }
 
     & .piso-miembros {
@@ -103,7 +122,7 @@
     
         & h3 {
             flex: 1 0 auto;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid #ffbf75;
             text-align: center;
             padding-bottom: 1rem;
         }
