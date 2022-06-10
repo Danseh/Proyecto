@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const loginUrl = `/api/login`;
 
 const Login = ({setUserGlobal}) => {
+  const navigate = useNavigate();
   const [inputUsername, setInputUsername] = useState("");
   const [inputPassword, setInputPassword] = useState("");
 
@@ -42,6 +44,8 @@ const Login = ({setUserGlobal}) => {
     }
     //console.log(data);
     fetchLogin(loginUrl, data);
+
+    navigate("/");
   }
 
   const handleChange = (e) => {
