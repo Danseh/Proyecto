@@ -59,12 +59,12 @@ const Login = ({setUserGlobal}) => {
         
         <div className="form-group">
           <label htmlFor="inputUsername">Usuario </label>
-          <input type="text" value={inputUsername} onChange={handleChange} name="username" id="inputUsername" className="form-control" autoComplete="username" autoFocus />
+          <input type="text" value={inputUsername} onChange={handleChange} name="username" id="inputUsername" className="form-control" autoComplete="username" placeholder="Nombre de usuario" autoFocus />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputPassword">Contraseña</label>
-          <input type="password" value={inputPassword} onChange={handleChange} name="password" id="inputPassword" className="form-control" autoComplete="password"  />
+          <input type="password" value={inputPassword} onChange={handleChange} name="password" id="inputPassword" className="form-control" placeholder="Contraseña" autoComplete="password"  />
         </div>
             
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>

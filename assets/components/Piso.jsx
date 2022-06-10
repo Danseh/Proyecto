@@ -22,6 +22,7 @@ const Piso = ({userGlobal}) => {
   const [soyMiembro, setSoyMiembro] = useState(false);
   const [soyInteresado, setSoyInteresado] = useState(false);
   const [soyAdmin, setSoyAdmin] = useState(false);
+  const [urlRemovePiso, setUrlRemovePiso] = useState();
 
   const getInfoPiso = async () => {
     try {
@@ -43,9 +44,9 @@ const Piso = ({userGlobal}) => {
       
       let data = await respuesta.json();
 
-      console.log(data);
-      setPiso(data);
+      setUrlRemovePiso(`piso/${data.id}/remove`)
 
+      setPiso(data);
 
       setImagenes(data.imagenes);
 
@@ -203,6 +204,7 @@ const Piso = ({userGlobal}) => {
       if (miembros.length < piso.plazas) {
         if (respuesta.status === 200) {
           $('.addMiembro').show();
+          $('.removeMiembro').hide();
         }
         
         setMiembros(prevMiembro => [...prevMiembro, data]);
@@ -233,6 +235,7 @@ const Piso = ({userGlobal}) => {
 
       if (respuesta.status === 200) {
         $('.removeMiembro').show();
+        $('.addMiembro').hide();
       }
 
       setMiembros((miembros) => miembros.filter(miembro => miembro.id != id ));
@@ -277,7 +280,7 @@ const Piso = ({userGlobal}) => {
               {piso.ciudad}
             </Link>
             </p>
-            <p>Plazas ocupadas: {miembros.length} / {piso.plazas} {piso.id}</p>
+            <p>Plazas ocupadas: {miembros.length} / {piso.plazas}</p>
             
             <p>Estado: &nbsp;
             {piso.estado === 'Disponible' ? 
@@ -285,8 +288,11 @@ const Piso = ({userGlobal}) => {
             <span className="ocupado">Ocupado</span>}
             </p>
             {piso.estado == "Disponible" ?
-            <p>Próxima disponibilidad: {piso.fechaDisponible}</p>
+            piso.fechaDisponible ? 
+            <p>Próxima disponibilidad: {piso.fechaDisponible}</p>:
+            <p>Próxima disponibilidad: Sin fecha</p>
             : null}
+
             {userGlobal ? 
             soyOwner ? <button className="btn btn-secondary noInteresado" disabled>Eres el dueño</button> :
             soyInteresado ? <button className="btn btn-danger noInteresado" onClick={removeMyself}>Ya no estoy interesado</button>
@@ -298,10 +304,17 @@ const Piso = ({userGlobal}) => {
             
             {soyOwner || soyAdmin ?
             <div className="piso-control">
-              <a href="eliminar" className="btn">Eliminar Piso</a>
-              <Link to={'editar'}>
-              <button type="button" className="btn">Editar Piso</button>
-              </Link>
+              <div className="dropdown">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Opciones
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><Link to = {"editar"} className="dropdown-item">Editar piso</Link></li>
+                  <li><hr class="dropdown-divider"/></li>
+                  <li><a class="dropdown-item" href={urlRemovePiso}>Borrar piso</a></li>
+                </ul>
+              </div>
+
             </div>
             : null }
             {miembros.length ?
@@ -331,6 +344,11 @@ const Piso = ({userGlobal}) => {
           <h3>Descripción del piso</h3>
           <p>{piso.descripcion}</p>
         </div>
+        
+        <div className="piso-descripcion">
+          <h3>Dirección del piso</h3>
+          <p>{piso.direccion}</p>
+        </div>
          
         {soyOwner ?
 
@@ -347,8 +365,8 @@ const Piso = ({userGlobal}) => {
                     soyOwner ? 
                     interesado.piso == null ? <div className="interesados-buttons">
                       
-                      <button className="btn btn-success" onClick={()=>addMiembro(interesado.id)}><i class='bi bi-check'></i></button>
-                      <button className="btn btn-danger" onClick={()=>removeInteresado(interesado.id)}><i class='bi bi-x'></i></button>
+                      <button className="btn-sm btn-success" onClick={()=>addMiembro(interesado.id)}><i class='bi bi-check'></i></button>
+                      <button className="btn-sm btn-danger" onClick={()=>removeInteresado(interesado.id)}><i class='bi bi-x'></i></button>
                       </div> :
 
                       <div className="interesados-buttons">

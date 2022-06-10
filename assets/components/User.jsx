@@ -21,9 +21,9 @@ const User = ({userGlobal}) => {
       
       let data = await respuesta.json();
 
-      if (data.roles.includes("ROLE_ADMIN")) {
-        setSoyAdmin(true);
-      }
+      // if (data.roles.includes("ROLE_ADMIN")) {
+      //   setSoyAdmin(true);
+      // }
       
       setUser(data);
 

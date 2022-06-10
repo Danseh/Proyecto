@@ -1,17 +1,42 @@
 aside {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
+
     background-color: #ffbf75;
-    
-    & a:link, a:visited, a:active {
-        color: black; 
+
+    form {
+        padding: 1rem;
+
+        & button {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+
+    & .panel-container {
+        display: flex;
+        flex-direction: column;
+
+        & h2 {
+            text-align: center;
+        }
+        
+        & .user-piso {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            & .card {
+                margin-right: 3rem;
+            }
         }
 
-    & a:hover {
-        color: white;
     }
+
+
+    
+
     
     & ul {
         list-style: none;

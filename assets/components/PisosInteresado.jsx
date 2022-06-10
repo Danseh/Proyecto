@@ -4,7 +4,7 @@ import Buscador from './Buscador';
 
 const myStoragePisosInteresado = window.sessionStorage;
 
-const Pisos = () => {
+const PisosInteresado = () => {
   const [jsonData, setJsonData] = useState({});
   const [pisos, setPisos] = useState([]);
   const [paginationInfo, setPaginationInfo] = useState({});
@@ -12,7 +12,7 @@ const Pisos = () => {
   const [user, setUser] = useState(JSON.parse(myStoragePisosInteresado.getItem('loggedUser')));
 
 
-  const getInfoUser = async (url) => {
+  const getInfoUser = async () => {
     try {
       const url = `/api/users/${user.id}`;
       let respuesta = await fetch(url);
@@ -55,7 +55,7 @@ const Pisos = () => {
   }
 
   useEffect(() => {
-    getInfo(url);
+    getInfoUser();
   }, []);
 
   useEffect(() => {
@@ -90,11 +90,16 @@ const Pisos = () => {
 
         <Buscador setJsonData={setJsonData} />
       </section>
-      
+
+          <div className="interesados-titulo">
+            <h1>Pisos en los que estoy interesado</h1> 
+          </div>
 
           <section className='pisos'>
+
             {pisos.map((piso) => (
-              <Link to={'piso/' + piso.id.toString()} key={piso.id}>
+              
+              <Link to={'/piso/' + piso.id.toString()} key={piso.id}>
                 <div class="card">
                   <img class="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
                   <div class="card-body">
@@ -135,4 +140,4 @@ const Pisos = () => {
   )
 }
 
-export default Pisos
+export default PisosInteresado

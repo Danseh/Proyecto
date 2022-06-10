@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
-const defaultUrl = `/api/pisos`;
+let searchUrl = "";
+
 
 const Buscador = ({ setJsonData }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
-  const searchUrl = `/api/pisos?ciudad=${searchKeyword}`;
+  const [priceRange, setPriceRange] = useState(0);
+  
 
   const getInfo = async (url) => {
     try {
@@ -20,20 +22,50 @@ const Buscador = ({ setJsonData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchKeyword.length === 0) {
-      getInfo(defaultUrl);
+      if (priceRange === 0) {
+      searchUrl = `/api/pisos`;
+      }
+      else {
+        searchUrl = `/api/pisos?precio[between]=0..${priceRange}`;
+      }
     }
+    else {
+      if (priceRange === 0) {
+        searchUrl = `/api/pisos?ciudad=${searchKeyword}`;
+        }
+      else {
+        searchUrl = `/api/pisos?ciudad=${searchKeyword}&precio[between]=0..${priceRange}`;
+      }
+      
+    }
+    console.log(searchUrl);
     getInfo(searchUrl);
+
   }
 
   const handleChange = (e) => {
-    setSearchKeyword(e.target.value);
+    if (e.target.name === "inputBuscador") {
+      setSearchKeyword(e.target.value);
+    }
+
+    if (e.target.name === "rangoPrecio") {
+      setPriceRange(e.target.value);
+    }
   }
-  
+
 
   return (
     <form className="formBuscador" onSubmit={handleSubmit}>
-      <input type="search" value={searchKeyword} onChange={handleChange} name="inputBuscador" className="form-control" id="inputBuscador" />
-      <button type="submit" name="btnBuscar" className="btn btn-info mt-0 ml-2" id="btnBuscar">Buscar por Ciudad</button>
+      <input type="search" value={searchKeyword} onChange={handleChange} name="inputBuscador" className="form-control" id="inputBuscador" placeholder="Buscar piso por ciudad" />
+      <button type="submit" name="btnBuscar" className="btn btn-info mt-0 ml-2" id="btnBuscar">Buscar</button>
+
+      <div className="rangoPrecio">
+
+      <input type="range" value={priceRange} min="0" max="1000" step="100" onChange={handleChange} name="rangoPrecio" className="rangoPrecio" list="tickmarks"/>
+
+
+      <output id="output" for="rangeInput">Precio: 0€ - {priceRange}€</output>
+      </div>
     </form>
   )
 }

@@ -8,7 +8,7 @@ const Panel = ({userGlobal, setUserGlobal}) => {
 
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(JSON.parse(myStoragePiso.getItem('loggedUser')));
+  const [user, setUser] = useState(JSON.parse(myStoragePanel.getItem('loggedUser')));
   const [piso, setPiso] = useState({});
 
   const getUserPiso = async () => {
@@ -60,11 +60,14 @@ const Panel = ({userGlobal, setUserGlobal}) => {
   }
 
   useEffect(() => {
-    
+    getUserPiso();
   }, [])
+
+
   return (
-    <div>
+      <>
       {userGlobal ?
+      <div className="panel-container">
             <ul>
               <li>
                 <h2>Bienvenido {userGlobal?.nombre}</h2>
@@ -96,27 +99,36 @@ const Panel = ({userGlobal, setUserGlobal}) => {
                 </Link>
               </li>
               <li>
-                <button type="button" class="btn btn-dark" onClick={handleLogout}>Cerrar sesión</button>
+                <Link to="/pisosInteresado">
+                <button type="button" class="btn btn-dark">Mis pisos interesado</button>
+                </Link>
               </li>
               <li>
-              <Link to={'piso/' + piso.id.toString()} key={piso.id}>
-                <div class="card">
-                  <img class="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
-                  <div class="card-body">
-                    <h5 class="card-title">{piso.titulo}</h5>
-                    <p class="card-text">{piso.direccion}</p>
-                    <p class="card-text">
-                    {piso.estado === 'Disponible' ? 
-                    <span className="disponible">Disponible</span> :
-                    <span className="ocupado">Ocupado</span>}
-                    </p>
-                  </div>
-                </div>
-              </Link>
+                <button type="button" class="btn btn-dark" onClick={handleLogout}>Cerrar sesión</button>
               </li>
             </ul>
-          : null}
-    </div>
+            {piso.id ? 
+              <div className="user-piso">
+                <h2>Mi piso: </h2>
+                <Link to={'piso/' + piso.id.toString()} key={piso.id}>
+                  <div class="card">
+                    <img class="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
+                    <div class="card-body">
+                      <h5 class="card-title">{piso.titulo}</h5>
+                      <p class="card-text">{piso.direccion}</p>
+                      <p class="card-text">
+                      {piso.estado === 'Disponible' ? 
+                      <span className="disponible">Disponible</span> :
+                      <span className="ocupado">Ocupado</span>}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              :null}
+      </div>
+      : null}
+    </>
   )
 }
 

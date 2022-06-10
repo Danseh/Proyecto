@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 
 #[ORM\Entity(repositoryClass: PisoRepository::class)]
 
@@ -32,9 +33,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 /** 
 * @ApiFilter(SearchFilter::class, properties={"ciudad": "exact", "owner": "exact"})
 */
-
-
-
+#[ApiFilter(RangeFilter::class, properties: ['precio'])]
 #[ApiFilter(OrderFilter::class, properties: ['precio'], arguments: ['orderParameterName' => 'order'])]
 
 

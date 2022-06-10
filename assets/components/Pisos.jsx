@@ -55,11 +55,11 @@ const Pisos = () => {
     }
   }, [jsonData])
 
-  $('.card').on('mouseenter', '.piso', function () {
-    $(this).css("border", "2px solid #ffbf75 ");
+  $('.pisos').on('mouseenter', '.card', function () {
+    $(this).css("border", "3px solid #ffbf75 ");
   });
 
-  $('.card').on('mouseleave', '.piso', function () {
+  $('.pisos').on('mouseleave', '.card', function () {
     $(this).css("border", "1px solid black");
   });
 
@@ -78,15 +78,16 @@ const Pisos = () => {
             {pisos.map((piso) => (
               <Link to={'piso/' + piso.id.toString()} key={piso.id}>
                 <div class="card">
-                  <img class="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
-                  <div class="card-body">
-                    <h5 class="card-title">{piso.titulo}</h5>
-                    <p class="card-text">{piso.direccion}</p>
-                    <p class="card-text">
+                  <img className="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
+                  <div className="card-body">
+                    <h5 className="card-title">{piso.titulo}</h5>
+                    <p className="card-text">{piso.direccion}</p>
+                    <p className="card-text">
                     {piso.estado === 'Disponible' ? 
                     <span className="disponible">Disponible</span> :
                     <span className="ocupado">Ocupado</span>}
                     </p>
+                    <h4 className>{piso.precio}€/MES</h4>
 
                   </div>
                 </div>
