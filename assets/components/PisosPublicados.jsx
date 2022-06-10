@@ -77,6 +77,10 @@ const PisosPublicados = () => {
 
         <Buscador setJsonData={setJsonData} />
       </section>
+
+          <div className="interesados-titulo">
+                <h1>Pisos en los que estoy interesado</h1> 
+          </div>
       
           {tienePisos.length ?
           <section className='pisos'>
