@@ -22,7 +22,7 @@ const Piso = ({userGlobal}) => {
   const [soyMiembro, setSoyMiembro] = useState(false);
   const [soyInteresado, setSoyInteresado] = useState(false);
   const [soyAdmin, setSoyAdmin] = useState(false);
-  const [urlRemovePiso, setUrlRemovePiso] = useState();
+  const [urlRemovePiso, setUrlRemovePiso] = useState("");
 
   const getInfoPiso = async () => {
     try {
@@ -88,7 +88,6 @@ const Piso = ({userGlobal}) => {
 
       //check owner
       
-      console.log(user);
       if (user.id == data.owner.charAt(data.owner.length - 1)) {
         setSoyOwner(true);
       }

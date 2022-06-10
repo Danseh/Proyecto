@@ -102,7 +102,7 @@ const PisosPublicados = () => {
               </Link>
             ))}
         </section>
-        : <h1 align="center">Aún no has publicado ningún piso</h1>}
+        : <h1 classNasme="no-piso" align="center">Aún no has publicado ningún piso</h1>}
         <div className="paginacion">
 
         {multiplePages ?

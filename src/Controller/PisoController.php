@@ -161,6 +161,15 @@ class PisoController extends AbstractController
         return $this->json($user, Response::HTTP_OK, [], ['groups' => 'infoPisoIndividual']);
     }
 
+    #[Route('/piso/{piso}/edit', name: 'editPiso', methods: ['GET', 'POST'])]
+    public function editPiso(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Piso $piso): Response
+    {
+
+             
+    
+        return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/piso/{piso}/remove', name: 'removePiso', methods: ['GET', 'POST'])]
     public function removePiso(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Piso $piso): Response
     {
