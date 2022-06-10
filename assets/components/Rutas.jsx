@@ -9,7 +9,7 @@ import Piso from './Piso';
 import PisosCiudad from './PisosCiudad';
 import PisosPublicados from './PisosPublicados';
 import PisosInteresado from './PisosInteresado';
-import EditarPiso from './EditarPIso';
+import EditarPiso from './EditarPiso';
 
 
 const myStorage = window.sessionStorage;
