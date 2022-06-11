@@ -85,7 +85,7 @@ class Piso
     private $estado;
 
     #[Groups(['infoPisos', 'infoPisoIndividual'])]
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: 'string', nullable: true)]
     private $fechaDisponible;
 
     #[Groups(['infoPisos', 'infoPisoIndividual'])]
@@ -243,12 +243,12 @@ class Piso
         return $this;
     }
 
-    public function getFechaDisponible(): ?\DateTimeInterface
+    public function getFechaDisponible(): ?string
     {
         return $this->fechaDisponible;
     }
 
-    public function setFechaDisponible(?\DateTimeInterface $fechaDisponible): self
+    public function setFechaDisponible(string $fechaDisponible): self
     {
         $this->fechaDisponible = $fechaDisponible;
 

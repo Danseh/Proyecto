@@ -15,27 +15,27 @@ const Crearpiso = () => {
   });
 
   return (
-    <form method="post" action="publicarPiso"  id="formCreate" enctype="multipart/form-data">
+    <form method="post" action="publicarPiso"  className="formCreate" encType="multipart/form-data">
         <h3 className="mb-3 mb-md-4 font-weight-normal">Publicar piso</h3>
         
         <div className="form-group">
           <label htmlFor="inputTitulo">Titulo </label>
-          <input type="text" name="titulo" id="inputTitulo" className="form-control" pattern="[a-zA-Z]{1,55}" title="El titulo solo puede contener letras" autoComplete="titulo" required autoFocus />
+          <input type="text" name="titulo" id="inputTitulo" className="form-control" pattern="[a-zA-Z\s]+" title="El titulo solo puede contener letras" autoComplete="titulo" required autoFocus />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Ciudad</label>
-          <input type="text" name="ciudad" id="inputCiudad" className="form-control" pattern="[a-zA-Z]{1,20}" title="La ciudad solo puede contener letras" autoComplete="ciudad" required />
+          <input type="text" name="ciudad" id="inputCiudad" className="form-control" pattern="[a-zA-Z\s]+" title="La ciudad solo puede contener letras" autoComplete="ciudad" required />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Dirección</label>
-          <input type="text" name="direccion" id="inputDireccion" className="form-control" pattern="[a-zA-Z]{1,55}" title="La dirección solo puede contener letras" autoComplete="direccion" required />
+          <input type="text" name="direccion" id="inputDireccion" className="form-control" pattern="[a-zA-Z0-9\s]+" title="La dirección solo puede contener algunos caracteres como º o /" autoComplete="direccion" required />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputDescripcion">Descripción</label>
-          <textarea type="text" name="descripcion" id="inputDescripcion" className="form-control" pattern="[a-zA-Z]{1,55}" title="La descripción solo puede contener letras" autoComplete="descripcion" required />
+          <textarea type="text" name="descripcion" id="inputDescripcion" className="form-control" pattern="[a-zA-Z\s]+" title="La descripción solo puede contener letras" autoComplete="descripcion" required />
         </div>
 
         <div className="form-group">
@@ -52,7 +52,7 @@ const Crearpiso = () => {
           <label htmlFor="imagenes">Imagenes</label>
           <input type="file" name="imagenes[]" id="imagenes" className="form-control"  multiple="multiple" required />
         </div>
-        <div align="center" id="crear">           
+        <div align="center" className="crear">           
         <input className="btn btn-lg btn-primary" type="submit" value="Crear" disabled/>
         </div>  
 

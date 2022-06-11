@@ -38,14 +38,14 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password',
                 'class' => 'form-control',
-                'placeholder' => 'Introduce tu contraseña (máximo 6 caracteres)'],
+                'placeholder' => 'Introduce tu contraseña (mínimo 6 caracteres)'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Introduce una contraseña por favor',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'La contraseña debe tener al menos {{ limit }} caracteres',
                         // max length allowed by Symfony for security reasons
                         'max' => 30,
                     ]),

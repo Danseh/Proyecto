@@ -80,7 +80,8 @@ const Pisos = () => {
                 <div class="card">
                   <img className="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
                   <div className="card-body">
-                    <h5 className="card-title">{piso.titulo}</h5>
+                    <h4 className="card-title">{piso.titulo}</h4>
+                    <p className="card-text">{piso.ciudad}</p>
                     <p className="card-text">{piso.direccion}</p>
                     <p className="card-text">
                     {piso.estado === 'Disponible' ? 

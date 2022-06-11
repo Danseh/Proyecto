@@ -93,7 +93,7 @@ const Rutas = () => {
                     <Route path="piso/:id/editar" element={<EditarPiso />} />
                     <Route path="pisos/:ciudad" element={<PisosCiudad />} />
                     <Route path="pisosInteresado" element={<PisosInteresado />} />
-                    <Route path="*" element={<Navigate replace to="/"/>} />
+
                 </Route>
             </Routes>
         </BrowserRouter>

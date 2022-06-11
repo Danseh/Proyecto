@@ -89,13 +89,15 @@ const PisosPublicados = () => {
                 <div class="card">
                   <img class="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
                   <div class="card-body">
-                    <h5 class="card-title">{piso.titulo}</h5>
+                    <h4 class="card-title">{piso.titulo}</h4>
+                    <p className="card-text">{piso.ciudad}</p>
                     <p class="card-text">{piso.direccion}</p>
                     <p class="card-text">
                     {piso.estado === 'Disponible' ? 
                     <span className="disponible">Disponible</span> :
                     <span className="ocupado">Ocupado</span>}
                     </p>
+                    <h4 className>{piso.precio}€/MES</h4>
 
                   </div>
                 </div>

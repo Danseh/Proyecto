@@ -56,7 +56,8 @@ const Buscador = ({ setJsonData }) => {
 
   return (
     <form className="formBuscador" onSubmit={handleSubmit}>
-      <input type="search" value={searchKeyword} onChange={handleChange} name="inputBuscador" className="form-control" id="inputBuscador" placeholder="Buscar piso por ciudad" />
+      <input type="search" value={searchKeyword} onChange={handleChange} name="inputBuscador" className="form-control" id="inputBuscador" pattern="[a-zA-Z\s]+" title="Solo puede contener letras" 
+      placeholder="Buscar piso por ciudad" />
       <button type="submit" name="btnBuscar" className="btn btn-info mt-0 ml-2" id="btnBuscar">Buscar</button>
 
       <div className="rangoPrecio">

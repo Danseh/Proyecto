@@ -5,6 +5,7 @@
     flex: 1 0 50%;
     background-color: #1c1f23;
     color: white;
+    font-family: "body";
 
     & .buscador form {
         display: flex;
@@ -53,14 +54,19 @@ a:hover {
     margin-left: 3rem;
     margin-top: 1rem;
     width: 18rem;
+    font-family: "body";
+
+    h4 {
+        font-family: "title";
+    }
 
 }
 
-#formCreate {
+.formCreate {
     background-color: #494c50;
     padding: 1rem;
 
-    & #crear {
+    & .crear {
         padding-top: 1rem;
         padding-bottom: 1rem;
     }

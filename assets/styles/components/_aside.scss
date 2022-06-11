@@ -16,6 +16,7 @@ aside {
     & .panel-container {
         display: flex;
         flex-direction: column;
+        font-family: "title";
 
         & h2 {
             text-align: center;
@@ -46,7 +47,7 @@ aside {
             padding-top: 0.5rem;
 
             & img {
-                border-radius: 5rem;
+                border-radius: 8rem;
             }
 
             & p {

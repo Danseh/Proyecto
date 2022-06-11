@@ -1,5 +1,16 @@
-body {
+//FUENTES
+@font-face {
+  font-family: "title";
+  src: url("../../public/font/Roboto-Bold.ttf");
+}
 
+@font-face {
+  font-family: "body";
+  src: url("../../public/font/Roboto-Regular.ttf");
+}
+
+body {
+    font-family: "body";
     display: flex;
     flex-direction: column;
     min-height: 100vh;

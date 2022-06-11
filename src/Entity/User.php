@@ -44,7 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $username;
 
-    #[Groups(['infoUser'])]
+    #[Groups(['infoUser', 'infoUserIndividual'])]
     #[ORM\Column(type: 'json')]
     private $roles = [];
 

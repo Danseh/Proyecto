@@ -12,6 +12,14 @@ const EditarPiso = () => {
   const [soyAdmin, setSoyAdmin] = useState(false);
   const [piso, setPiso] = useState({})
 
+  // estados form
+  const [inputTitulo, setInputTitulo] = useState("");
+  const [inputCiudad, setInputCiudad] = useState("");
+  const [inputDireccion, setInputDireccion] = useState("");
+  const [inputDescripcion, setInputDescripcion] = useState("");
+  const [inputPrecio, setInputPrecio] = useState(0);
+  const [inputPlazas, setInputPlazas] = useState(0);
+
   const getInfoPiso = async () => {
     try {
       const url = `/api/pisos/${params.id}}`;
@@ -25,7 +33,14 @@ const EditarPiso = () => {
 
       setPiso(data);
 
-      setUrlEditPiso(`piso/${params.id}/edit`)
+      setInputTitulo(data.titulo);
+      setInputCiudad(data.ciudad);
+      setInputDireccion(data.direccion);
+      setInputDescripcion(data.descripcion);
+      setInputPrecio(data.precio);
+      setInputPlazas(data.plazas);
+
+      setUrlEditPiso(`/piso/${params.id}/edit`)
 
       if (user) {
 
@@ -46,19 +61,49 @@ const EditarPiso = () => {
     }
   }
 
+  const handleChange = (e) => {
+    if (e.target.name === "titulo") {
+      setInputTitulo(e.target.value);
+    }
+
+    if (e.target.name === "ciudad") {
+      setInputCiudad(e.target.value);
+    }
+
+    if (e.target.name === "direccion") {
+      setInputDireccion(parseInt(e.target.value));
+    }
+
+    if (e.target.name === "descripcion") {
+      setInputDescripcion(e.target.value);
+    }
+
+    if (e.target.name === "precio") {
+      setInputPrecio(parseInt(e.target.value));
+    }
+
+    if (e.target.name === "plazas") {
+      setInputPlazas(parseInt(e.target.value));
+    }
+
+
+  }
 
   useEffect(() => {
     getInfoPiso();
   }, [])
 
+
   $(function(){
     $("#imagenes").on("change", function(){
 
-        if ($("#imagenes")[0].files.length>5) {
-         alert("Solo puedes subir un máximo de 5 fotos del piso");
+        if ($("#imagenes")[0].files.length<=5) {
+          $("input[type='submit']").attr("disabled", false);
+         
         }
         else {
-         $("input[type='submit']").attr("disabled", false);
+          alert("Solo puedes subir un máximo de 5 fotos del piso");
+          $("input[type='submit']").attr("disabled", true);
         }
     });    
   });
@@ -66,50 +111,50 @@ const EditarPiso = () => {
   return (
     <>
     {soyOwner || soyAdmin ? 
-    <form method="post" action={urlEditPiso}  id="formCreate" enctype="multipart/form-data">
-        <h3 className="mb-3 mb-md-4 font-weight-normal">Publicar piso</h3>
+    <form method="post" action={urlEditPiso} className="formCreate" encType="multipart/form-data">
+        <h3 className="mb-3 mb-md-4 font-weight-normal">Editar piso</h3>
         
         <div className="form-group">
           <label htmlFor="inputTitulo">Titulo </label>
-          <input type="text" name="titulo" value={piso.titulo} id="inputTitulo" className="form-control" pattern="[a-zA-Z]{1,55}" title="El titulo solo puede contener letras" autoComplete="titulo" autoFocus />
+          <input type="text" name="titulo" value={inputTitulo} id="inputTitulo" onInput={handleChange} className="form-control" pattern="[a-zA-Z\s]+" title="El titulo solo puede contener letras" autoComplete="titulo" autoFocus />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Ciudad</label>
-          <input type="text" name="ciudad" value={piso.ciudad} id="inputCiudad" className="form-control" pattern="[a-zA-Z]{1,20}" title="La ciudad solo puede contener letras" autoComplete="ciudad" />
+          <input type="text" name="ciudad" value={inputCiudad} id="inputCiudad" onInput={handleChange} className="form-control" pattern="[a-zA-Z\s]+" title="La ciudad solo puede contener letras" autoComplete="ciudad" />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Dirección</label>
-          <input type="text" name="direccion" value={piso.direccion} id="inputDireccion" className="form-control" pattern="[a-zA-Z]{1,55}" title="La dirección solo puede contener letras" autoComplete="direccion" />
+          <input type="text" name="direccion" value={inputDireccion} id="inputDireccion" onInput={handleChange} className="form-control" pattern="[a-zA-Z0-9º/\s]+" title="La dirección solo puede algunos caracteres como º o /" autoComplete="direccion" />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputDescripcion">Descripción</label>
-          <textarea type="text" name="descripcion" value={piso.descripcion} id="inputDescripcion" className="form-control" pattern="[a-zA-Z]{1,55}" title="La descripción solo puede contener letras" autoComplete="descripcion"/>
+          <textarea type="text" name="descripcion" value={inputDescripcion} id="inputDescripcion" onInput={handleChange} className="form-control" pattern="[a-zA-Z\s]+" title="La descripción solo puede contener letras" autoComplete="descripcion"/>
         </div>
 
         <div className="form-group">
           <label htmlFor="inputPrecio">Precio al mes</label>
-          <input type="number" name="precio" value={piso.precio} id="inputPrecio" className="form-control" autoComplete="precio" />
+          <input type="number" name="precio" value={inputPrecio} id="inputPrecio" onInput={handleChange} className="form-control" autoComplete="precio" />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputPlazas">Plazas máximas</label>
-          <input type="number" name="plazas" value={piso.plazas} id="inputPlazas" className="form-control" autoComplete="plazas" />
+          <input type="number" name="plazas" value={inputPlazas} id="inputPlazas" onInput={handleChange} className="form-control" autoComplete="plazas" />
         </div>
 
         <div className="form-group">
-          <label htmlFor="inputPlazas">Fecha próxima disponibilidad de plaza</label>
-          <input type="date" name="FechaDisp" id="fechaDisp" className="form-control" autoComplete="fechaDisp"/>
+          <label htmlFor="inputFechaDisp">Fecha próxima disponibilidad de plaza</label>
+          <input type="date" name="fechaDisp" id="inputFechaDisp" className="form-control" autoComplete="fechaDisp"/>
         </div>
 
         <div className="form-group">
           <label htmlFor="imagenes">Imagenes</label>
           <input type="file" name="imagenes[]" id="imagenes" className="form-control"  multiple="multiple" />
         </div>
-        <div align="center" id="crear">           
-        <input className="btn btn-lg btn-primary" type="submit" value="Crear" disabled/>
+        <div align="center" className="crear">           
+        <input className="btn btn-lg btn-primary" type="submit" value="Editar"/>
         </div>  
 
 

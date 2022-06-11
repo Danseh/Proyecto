@@ -16,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class PisoController extends AbstractController
 {
@@ -165,15 +166,75 @@ class PisoController extends AbstractController
     public function editPiso(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Piso $piso): Response
     {
 
-             
+        $titulo = $request->request->get('titulo');
+        
+        $imagenes = $request->files->get('imagenes');
+
+        $arrayImagenes;
+
+        if ($imagenes && count($imagenes) <= 5) {
+            
+            foreach ($imagenes as $imagen) {
+
+                $originalFilename = pathinfo($imagen->getClientOriginalName(), PATHINFO_FILENAME);
+                // $originalFilename->replaceMatches('/[^._,]++/', ' ');
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imagen->guessExtension();
+                $rutaImagen = $this->getParameter('pisos_directory').$titulo;
+
+                try {
+                    $imagen->move(
+                        $rutaImagen,
+                        $newFilename
+                    );
+
+                    $arrayImagenes[] = "/pisos/".$titulo."/".$newFilename;
+                }
+                catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+                }
+            }
+            $piso->setImagenes($arrayImagenes);
+        }
+
+            $piso->setTitulo($titulo);
+            $piso->setCiudad($request->request->get('ciudad'));
+            $piso->setDireccion($request->request->get('direccion'));
+            $piso->setDescripcion($request->request->get('descripcion'));
+            $piso->setPlazas($request->request->get('plazas'));
+            $piso->setEstado("Disponible");
+
+            ($request->request->get('fechaDisp')) ? $fecha = new \DateTime($request->request->get('fechaDisp')) : $fecha = null;
+
+            if ($fecha) {
+                $nuevaFecha = $fecha->format('d-m-Y');
+            }
+            else {
+                $nuevaFecha = null;
+            }
+ 
+            if ($nuevaFecha) {
+                $piso->setFechaDisponible($nuevaFecha);
+            }
+
+            // $piso->setFechaDisponible(new DateTime($request->request->get('fechaDisp')));
+            $piso->setPrecio($request->request->get('precio'));
+            $piso->setOwner($this->getUser());
     
-        return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
+            $entityManager->persist($piso);
+            $entityManager->flush();
+        
+             
+        return $this->redirect('/piso/'.$piso->getId());
+
     }
 
     #[Route('/piso/{piso}/remove', name: 'removePiso', methods: ['GET', 'POST'])]
     public function removePiso(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, Piso $piso): Response
     {
-
+        $entityManager->remove($piso);
+        $entityManager->flush();
              
     
         return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);

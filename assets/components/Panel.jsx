@@ -74,7 +74,7 @@ const Panel = ({userGlobal, setUserGlobal}) => {
                 
               </li>
               <li>
-                <p>{userGlobal.foto ? <img src={userGlobal.foto} alt="perfil" width="150px" height="150px"></img> :
+                <p>{userGlobal.foto ? <img src={userGlobal.foto} alt="perfil" width="200px" height="200px"></img> :
                 <img src="/img/perfilDefault.jpg" alt="perfilDefault" width="150px" height="150px"></img>}
                 </p>
               </li>

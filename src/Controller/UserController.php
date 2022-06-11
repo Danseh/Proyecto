@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -48,6 +49,22 @@ class UserController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
         
+
+        return $this->redirect('/user/'.$user->getId());
+    }
+
+    #[Route('/user/{user}/edit', name: 'userEdit', methods: ['GET', 'POST'])]
+    public function userEdit(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, SluggerInterface $slugger, User $user): Response
+    {
+        $user->setPassword(
+            $userPasswordHasher->hashPassword(
+                    $user,
+                    $request->request->get('password')
+                )
+            );
+
+        $entityManager->persist($user);
+        $entityManager->flush();
 
         return $this->redirect('/user/'.$user->getId());
     }

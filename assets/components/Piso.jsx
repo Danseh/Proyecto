@@ -44,7 +44,7 @@ const Piso = ({userGlobal}) => {
       
       let data = await respuesta.json();
 
-      setUrlRemovePiso(`piso/${data.id}/remove`)
+      setUrlRemovePiso(`/piso/${data.id}/remove`)
 
       setPiso(data);
 
