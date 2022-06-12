@@ -96,7 +96,7 @@ const PisosInteresado = () => {
             <h1>Pisos en los que estoy interesado</h1> 
           </div>
 
-          {tienePisos.length ?
+          {tienePisos ?
           <section className='pisos'>
             {pisos.map((piso) => (
               

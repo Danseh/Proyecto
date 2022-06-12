@@ -6,14 +6,15 @@ const logoutUrl =  `/logout`;
 
 const Panel = ({userGlobal, setUserGlobal}) => {
 
-  const navigate = useNavigate();
+  let url = "";
 
+  const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(myStoragePanel.getItem('loggedUser')));
   const [piso, setPiso] = useState({});
 
-  const getUserPiso = async () => {
+  const getUserPiso = async (url) => {
     try {
-      const url = `/api/users/${user.id}`;
+
       let respuesta = await fetch(url, {
         headers: {
           'Accept': 'application/json',
@@ -33,6 +34,7 @@ const Panel = ({userGlobal, setUserGlobal}) => {
       console.log(dataPiso);
       setPiso(dataPiso);
 
+      url = `/api/users/${user.id}`;
     }
 
 
@@ -60,7 +62,8 @@ const Panel = ({userGlobal, setUserGlobal}) => {
   }
 
   useEffect(() => {
-    getUserPiso();
+    url = `/api/users/${userGlobal.id}`;
+    getUserPiso(url);
   }, [])
 
 
@@ -114,7 +117,8 @@ const Panel = ({userGlobal, setUserGlobal}) => {
                   <div class="card">
                     <img class="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
                     <div class="card-body">
-                      <h5 class="card-title">{piso.titulo}</h5>
+                      <h4 class="card-title">{piso.titulo}</h4>
+                      <p className="card-text">{piso.ciudad}</p>
                       <p class="card-text">{piso.direccion}</p>
                       <p class="card-text">
                       {piso.estado === 'Disponible' ? 

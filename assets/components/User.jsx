@@ -108,7 +108,7 @@ const User = ({userGlobal}) => {
           <p>{user.informacion}</p>
         </div>
         <div className="user-gustos">
-          <h3>Gustos/aficiones</h3>
+          <h3>Gustos/intereses</h3>
           <p>{user.gustos}</p>
         </div>
       </div>

@@ -16,7 +16,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 #[ORM\Entity(repositoryClass: PisoRepository::class)]
 
 #[ApiResource(    
-    attributes: ["pagination_items_per_page" => 8],
+    attributes: ["pagination_items_per_page" => 10],
     collectionOperations: [
         'get' => [
             'method' => 'get',
@@ -53,7 +53,8 @@ class Piso
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $descripcion;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[Groups(['infoPisos', 'infoPisoIndividual'])]
+    #[ORM\Column(type: 'string', length:255, nullable: true)]
     private $fechaPublicacion;
 
     #[Groups(['infoPisos', 'infoPisoIndividual'])]
@@ -85,7 +86,7 @@ class Piso
     private $estado;
 
     #[Groups(['infoPisos', 'infoPisoIndividual'])]
-    #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $fechaDisponible;
 
     #[Groups(['infoPisos', 'infoPisoIndividual'])]
@@ -131,12 +132,12 @@ class Piso
         return $this;
     }
 
-    public function getFechaPublicacion(): ?\DateTimeInterface
+    public function getFechaPublicacion(): ?string
     {
         return $this->fechaPublicacion;
     }
 
-    public function setFechaPublicacion(?\DateTimeInterface $fechaPublicacion): self
+    public function setFechaPublicacion(string $fechaPublicacion): self
     {
         $this->fechaPublicacion = $fechaPublicacion;
 

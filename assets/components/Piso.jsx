@@ -23,6 +23,7 @@ const Piso = ({userGlobal}) => {
   const [soyInteresado, setSoyInteresado] = useState(false);
   const [soyAdmin, setSoyAdmin] = useState(false);
   const [urlRemovePiso, setUrlRemovePiso] = useState("");
+  const [owner, setOwner] = useState(false);
 
   const getInfoPiso = async () => {
     try {
@@ -50,6 +51,19 @@ const Piso = ({userGlobal}) => {
 
       setImagenes(data.imagenes);
 
+
+    //obtener propietario
+    let respuestaPropietario = await fetch(data.owner, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    
+    let propietario = await respuestaPropietario.json();
+
+    
+    setOwner(propietario);
+
     //obtener miembros
     data.miembros.forEach(async (miembro) => {
         
@@ -61,7 +75,6 @@ const Piso = ({userGlobal}) => {
       
       let nuevoMiembro = await respuestaMiembro.json();
 
-      console.log(nuevoMiembro);
       
       setMiembros(prevMiembro => [...prevMiembro, nuevoMiembro]);
 
@@ -281,16 +294,21 @@ const Piso = ({userGlobal}) => {
             </p>
             <p>Plazas ocupadas: {miembros.length} / {piso.plazas}</p>
             
-            <p>Estado: &nbsp;
+            <p>Estado:&nbsp;
             {piso.estado === 'Disponible' ? 
             <span className="disponible">Disponible</span> :
             <span className="ocupado">Ocupado</span>}
             </p>
-            {piso.estado == "Disponible" ?
+            {piso.estado == "Ocupado" ?
             piso.fechaDisponible ? 
             <p>Próxima disponibilidad: {piso.fechaDisponible}</p>:
             <p>Próxima disponibilidad: Sin fecha</p>
             : null}
+            <p>Propietario: &nbsp;
+              <Link to={'/user/' + owner.id} key={owner.id}>
+                {owner.nombre} {owner.apellidos}
+              </Link>
+            </p>
 
             {userGlobal ? 
             soyOwner ? <button className="btn btn-secondary noInteresado" disabled>Eres el dueño</button> :
@@ -301,8 +319,8 @@ const Piso = ({userGlobal}) => {
 
             </div>
             
-            {soyOwner || soyAdmin ?
             <div className="piso-control">
+            {soyOwner || soyAdmin ?
               <div className="dropdown">
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   Opciones
@@ -313,9 +331,9 @@ const Piso = ({userGlobal}) => {
                   <li><a class="dropdown-item" href={urlRemovePiso}>Borrar piso</a></li>
                 </ul>
               </div>
+            : null }
 
             </div>
-            : null }
             {miembros.length ?
             <div className="piso-miembros">
                 <h2>Miembros</h2>
@@ -325,7 +343,7 @@ const Piso = ({userGlobal}) => {
                     <li><Link to={'/user/' + miembro.id.toString()}><i class="bi bi-person"></i>{miembro.nombre} {miembro.apellidos}</Link>
                     {userGlobal ?
                     soyOwner || miembro.id == user.id ? <div className="miembros-buttons">
-                      <button className="btn btn-danger" onClick={()=>removeMiembro(miembro.id)}><i class='bi bi-x'></i></button>
+                      <button className="btn-sm btn-danger" onClick={()=>removeMiembro(miembro.id)}><i class='bi bi-x'></i></button>
                       </div> :
                       null: null}
                     </li>

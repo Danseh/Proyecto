@@ -3,7 +3,8 @@ aside {
 
     background-color: #ffbf75;
 
-    form {
+
+    & form {
         padding: 1rem;
 
         & button {
@@ -27,6 +28,11 @@ aside {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            font-family: "body";
+
+            & h4 {
+                font-family: "title";
+            }
             
             & .card {
                 margin-right: 3rem;

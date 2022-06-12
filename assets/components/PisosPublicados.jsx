@@ -79,13 +79,13 @@ const PisosPublicados = () => {
       </section>
 
           <div className="interesados-titulo">
-                <h1>Pisos en los que estoy interesado</h1> 
+                <h1>Pisos que he publicado</h1> 
           </div>
       
           {tienePisos.length ?
           <section className='pisos'>
             {pisos.map((piso) => (
-              <Link to={'piso/' + piso.id.toString()} key={piso.id}>
+              <Link to={'/piso/' + piso.id.toString()} key={piso.id}>
                 <div class="card">
                   <img class="card-img-top" src={piso.imagenes[0]} alt="Card image cap" />
                   <div class="card-body">

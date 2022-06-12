@@ -60,6 +60,8 @@ class PisoController extends AbstractController
             $piso->setCiudad($request->request->get('ciudad'));
             $piso->setDireccion($request->request->get('direccion'));
             $piso->setDescripcion($request->request->get('descripcion'));
+            $fechaActual = new \DateTime('@'.strtotime('now'));
+            $piso->setFechaPublicacion($fechaActual->format('d-m-Y'));
             $piso->setPlazas($request->request->get('plazas'));
             $piso->setEstado("Disponible");
             $piso->setPrecio($request->request->get('precio'));
