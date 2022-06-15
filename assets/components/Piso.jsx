@@ -367,7 +367,7 @@ const Piso = ({userGlobal}) => {
           <p>{piso.direccion}</p>
         </div>
          
-        {soyOwner ?
+        {soyOwner || soyAdmin?
 
         interesados.length ?
         <div className="piso-interesados">
@@ -379,7 +379,7 @@ const Piso = ({userGlobal}) => {
                     <li>
                     <Link to={'/user/' + interesado.id.toString()}><i class="bi bi-person"></i> {interesado.nombre} {interesado.apellidos}</Link>
                     {userGlobal ?
-                    soyOwner ? 
+                    soyOwner || soyAdmin ? 
                     interesado.piso == null ? <div className="interesados-buttons">
                       
                       <button className="btn-sm btn-success" onClick={()=>addMiembro(interesado.id)}><i class='bi bi-check'></i></button>
