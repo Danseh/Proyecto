@@ -30,7 +30,7 @@ const Crearpiso = () => {
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Dirección</label>
-          <input type="text" name="direccion" id="inputDireccion" className="form-control" pattern="[a-zA-ZÀ-ÿ0-9º/\s]+" title="La dirección solo puede contener algunos caracteres como º o /" autoComplete="direccion" required />
+          <input type="text" name="direccion" id="inputDireccion" className="form-control" pattern="[a-zA-ZÀ-ÿ0-9º.,/\s]+" title="La dirección solo puede contener algunos caracteres como º / , o ." autoComplete="direccion" required />
         </div>
 
         <div className="form-group">

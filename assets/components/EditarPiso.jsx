@@ -126,7 +126,7 @@ const EditarPiso = () => {
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Dirección</label>
-          <input type="text" name="direccion" value={inputDireccion} id="inputDireccion" onInput={handleChange} className="form-control" pattern="[a-zA-ZÀ-ÿ0-9º/\s]+" title="La dirección solo puede algunos caracteres como º o /" autoComplete="direccion" />
+          <input type="text" name="direccion" value={inputDireccion} id="inputDireccion" onInput={handleChange} className="form-control" pattern="[a-zA-ZÀ-ÿ0-9º,./\s]+" title="La dirección solo puede algunos caracteres como º / , o ." autoComplete="direccion" />
         </div>
 
         <div className="form-group">
