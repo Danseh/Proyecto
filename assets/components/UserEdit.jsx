@@ -241,7 +241,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
             </div>
 
             <div className="user-gustos">
-              <h3>Gustos/aficiones</h3>
+              <h3>Gustos/intereses</h3>
               <textarea value={inputGustos} rows = "3" cols = "25" onChange={handleChange} name="gustos"/>
             </div>
           </div>

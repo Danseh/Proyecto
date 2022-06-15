@@ -71,7 +71,7 @@ const EditarPiso = () => {
     }
 
     if (e.target.name === "direccion") {
-      setInputDireccion(parseInt(e.target.value));
+      setInputDireccion(e.target.value);
     }
 
     if (e.target.name === "descripcion") {
