@@ -72,7 +72,7 @@ CREATE TABLE `piso` (
 
 LOCK TABLES `piso` WRITE;
 /*!40000 ALTER TABLE `piso` DISABLE KEYS */;
-INSERT INTO `piso` VALUES (25,2,'piso granada','piso en grana mu grande',NULL,'Granada','C/aaa nº4','a:2:{i:0;s:42:\"/pisos/piso granada/piso-6293d783d7b5e.jpg\";i:1;s:43:\"/pisos/piso granada/piso1-6293d783d8095.jpg\";}',200,4,'Disponible','18-06-2022'),(26,2,'piso madrid','piso en madrid mu bonico',NULL,'Madrid','C/bb nº4','a:2:{i:0;s:41:\"/pisos/piso madrid/piso-6293d79a463f9.jpg\";i:1;s:42:\"/pisos/piso madrid/piso1-6293d79a46892.jpg\";}',150,3,'Disponible',NULL),(27,2,'piso 3','Piso en barcelona centro',NULL,'Barcelona','c/cc nº8','a:2:{i:0;s:36:\"/pisos/piso 3/piso-6293eaa7f27d9.jpg\";i:1;s:37:\"/pisos/piso 3/piso1-6293eaa7f2cd8.jpg\";}',300,4,'Disponible',NULL),(28,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(29,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(30,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(31,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(32,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(33,2,'piso 5','aaa',NULL,'Alicante','c/dff nº10','a:3:{i:0;s:36:\"/pisos/piso 5/piso-629531b049cde.jpg\";i:1;s:37:\"/pisos/piso 5/piso1-629531b04b0ff.jpg\";i:2;s:37:\"/pisos/piso 5/piso2-629531b04b4dc.jpg\";}',200,4,'Disponible',NULL),(40,2,'testfecha','a','13-06-2022','Alicante','a','a:2:{i:0;s:41:\"/pisos/testfecha/perfil-62a752bb77220.jpg\";i:1;s:40:\"/pisos/testfecha/piso2-62a752bb774f4.jpg\";}',2,1,'Disponible',NULL);
+INSERT INTO `piso` VALUES (25,2,'piso granada','piso en grana mu grande',NULL,'Granada','C/aaa nº4','a:2:{i:0;s:42:\"/pisos/piso granada/piso-6293d783d7b5e.jpg\";i:1;s:43:\"/pisos/piso granada/piso1-6293d783d8095.jpg\";}',200,4,'Disponible','18-06-2022'),(26,2,'piso madrid','piso en madrid mu bonico',NULL,'Madrid','C/bb nº4','a:2:{i:0;s:41:\"/pisos/piso madrid/piso-6293d79a463f9.jpg\";i:1;s:42:\"/pisos/piso madrid/piso1-6293d79a46892.jpg\";}',150,3,'Disponible',NULL),(27,2,'piso 3','Piso en barcelona centro',NULL,'Barcelona','c/cc nº8','a:2:{i:0;s:36:\"/pisos/piso 3/piso-6293eaa7f27d9.jpg\";i:1;s:37:\"/pisos/piso 3/piso1-6293eaa7f2cd8.jpg\";}',300,4,'Disponible',NULL),(28,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(29,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(30,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(31,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(32,2,'piso 4','piso en Valencia guapo',NULL,'Valencia','c/dd nº10','a:2:{i:0;s:36:\"/pisos/piso 4/piso-6293ef21ef2d6.jpg\";i:1;s:37:\"/pisos/piso 4/piso1-6293ef21f221d.jpg\";}',250,3,'Disponible',NULL),(33,2,'piso 5','aaa',NULL,'Alicante','c/dff nº10','a:3:{i:0;s:36:\"/pisos/piso 5/piso-629531b049cde.jpg\";i:1;s:37:\"/pisos/piso 5/piso1-629531b04b0ff.jpg\";i:2;s:37:\"/pisos/piso 5/piso2-629531b04b4dc.jpg\";}',200,4,'Disponible',NULL);
 /*!40000 ALTER TABLE `piso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +100,7 @@ CREATE TABLE `piso_user` (
 
 LOCK TABLES `piso_user` WRITE;
 /*!40000 ALTER TABLE `piso_user` DISABLE KEYS */;
-INSERT INTO `piso_user` VALUES (25,6),(26,3),(40,6);
+INSERT INTO `piso_user` VALUES (25,6),(26,3);
 /*!40000 ALTER TABLE `piso_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +130,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`),
   KEY `IDX_8D93D6491AC830AF` (`piso_id`),
   CONSTRAINT `FK_8D93D6491AC830AF` FOREIGN KEY (`piso_id`) REFERENCES `piso` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +139,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (2,'test','[]','$2y$13$mM0/6Vg7BQWvgegpzFomxeAoaEZmw9yGSJP.IuuZglr/0zr11gHvu',18,'Hombre','hola soy alberto','me gustan los videojuegos','/profiles/test/perfil-6293bcf847fd1.jpg','antonio','lopez',655374921,'xxfirox123@gmail.com',NULL),(3,'alberto','[]','$2y$13$zOia38A2tn3SXopABjuoY.xfKEXFlAhDOgPwl.1ah.e4r/JN4bii2',NULL,NULL,NULL,NULL,NULL,'alberto','fernandez silva',NULL,NULL,NULL),(6,'pablo','[]','$2y$13$qVQNXVEMeaaGllbLGXQ.PuyJxbG5HDdgIJjEQ.uzBjUOZPpIiATyO',NULL,'Hombre',NULL,NULL,NULL,'Pablo','López Rodríguez',NULL,'lopez@gmail.com',NULL);
+INSERT INTO `user` VALUES (2,'test','[]','$2y$13$mM0/6Vg7BQWvgegpzFomxeAoaEZmw9yGSJP.IuuZglr/0zr11gHvu',18,'Hombre','hola soy alberto','me gustan los videojuegos','/profiles/test/perfil-6293bcf847fd1.jpg','antonio','lopez',655374921,'xxfirox123@gmail.com',NULL),(3,'alberto','[]','$2y$13$zOia38A2tn3SXopABjuoY.xfKEXFlAhDOgPwl.1ah.e4r/JN4bii2',NULL,NULL,NULL,NULL,NULL,'alberto','fernandez silva',NULL,NULL,NULL),(6,'pablo','[]','$2y$13$qVQNXVEMeaaGllbLGXQ.PuyJxbG5HDdgIJjEQ.uzBjUOZPpIiATyO',NULL,'Hombre',NULL,NULL,NULL,'Pablo','López Rodríguez',NULL,'lopez@gmail.com',NULL),(7,'admin','[\"ROLE_ADMIN\"]','$2y$13$JPPBx0Ak9ctu1XcUjEFsD.1l6HDDrxQvFxVtkrbeMVH7hyDyasXqi',NULL,'Hombre',NULL,NULL,NULL,'admin','admin',NULL,'admin@admin.com',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -152,4 +152,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-13 17:20:39
+-- Dump completed on 2022-06-15  4:22:12
