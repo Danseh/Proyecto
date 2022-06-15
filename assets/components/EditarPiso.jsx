@@ -131,7 +131,7 @@ const EditarPiso = () => {
 
         <div className="form-group">
           <label htmlFor="inputDescripcion">Descripción</label>
-          <textarea type="text" name="descripcion" value={inputDescripcion} id="inputDescripcion" onInput={handleChange} className="form-control" pattern="[a-zA-ZÀ-ÿ\s]+" title="La descripción solo puede contener letras" autoComplete="descripcion"/>
+          <textarea type="text" name="descripcion" value={inputDescripcion} id="inputDescripcion" onInput={handleChange} className="form-control" pattern="[a-zA-ZÀ-ÿ0-9\s]+" title="La descripción solo puede contener letras y números" autoComplete="descripcion"/>
         </div>
 
         <div className="form-group">
