@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+const myStorageUser = window.sessionStorage;
 
 const User = ({userGlobal}) => {
 
@@ -8,6 +9,7 @@ const User = ({userGlobal}) => {
   const params = useParams();
   const [user, setUser] = useState({});
   const [soyAdmin, setSoyAdmin] = useState(false);
+  const [currentUser, setCurrentUser] = useState(JSON.parse(myStorageUser.getItem('loggedUser')));
 
   const getInfoUser = async () => {
     
@@ -20,10 +22,11 @@ const User = ({userGlobal}) => {
       });
       
       let data = await respuesta.json();
+      console.log(data);
 
-      // if (data.roles.includes("ROLE_ADMIN")) {
-      //   setSoyAdmin(true);
-      // }
+      if (currentUser.roles.includes("ROLE_ADMIN")) {
+        setSoyAdmin(true);
+      }
       
       setUser(data);
 
@@ -37,7 +40,6 @@ const User = ({userGlobal}) => {
   }
 
   useEffect(() => {
-    console.log(userGlobal);
     getInfoUser();
   }, [])
 
