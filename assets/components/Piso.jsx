@@ -332,6 +332,10 @@ const Piso = ({userGlobal}) => {
               </div>
             : null }
 
+              <div className="piso-precio">
+                <h3>{piso.precio}€/MES</h3>
+              </div>
+
             </div>
             {miembros.length ?
             <div className="piso-miembros">

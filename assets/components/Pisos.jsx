@@ -88,7 +88,7 @@ const Pisos = () => {
                     <span className="disponible">Disponible</span> :
                     <span className="ocupado">Ocupado</span>}
                     </p>
-                    <h4 className>{piso.precio}€/MES</h4>
+                    <h4>{piso.precio}€/MES</h4>
 
                   </div>
                 </div>
