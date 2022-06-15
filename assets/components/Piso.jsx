@@ -92,7 +92,6 @@ const Piso = ({userGlobal}) => {
         
         let nuevoInteresado = await respuestaInteresado.json();
 
-        console.log(nuevoInteresado);
         
         setInteresados(prevInteresado => [...prevInteresado, nuevoInteresado]);
 

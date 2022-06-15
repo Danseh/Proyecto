@@ -116,22 +116,22 @@ const EditarPiso = () => {
         
         <div className="form-group">
           <label htmlFor="inputTitulo">Titulo </label>
-          <input type="text" name="titulo" value={inputTitulo} id="inputTitulo" onInput={handleChange} className="form-control" pattern="[a-zA-Z\s]+" title="El titulo solo puede contener letras" autoComplete="titulo" autoFocus />
+          <input type="text" name="titulo" value={inputTitulo} id="inputTitulo" onInput={handleChange} className="form-control" pattern="[a-zA-ZÀ-ÿ\s]+" title="El titulo solo puede contener letras" autoComplete="titulo" autoFocus />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Ciudad</label>
-          <input type="text" name="ciudad" value={inputCiudad} id="inputCiudad" onInput={handleChange} className="form-control" pattern="[a-zA-Z\s]+" title="La ciudad solo puede contener letras" autoComplete="ciudad" />
+          <input type="text" name="ciudad" value={inputCiudad} id="inputCiudad" onInput={handleChange} className="form-control" pattern="[a-zA-ZÀ-ÿ\s]+" title="La ciudad solo puede contener letras" autoComplete="ciudad" />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Dirección</label>
-          <input type="text" name="direccion" value={inputDireccion} id="inputDireccion" onInput={handleChange} className="form-control" pattern="[a-zA-Z0-9º/\s]+" title="La dirección solo puede algunos caracteres como º o /" autoComplete="direccion" />
+          <input type="text" name="direccion" value={inputDireccion} id="inputDireccion" onInput={handleChange} className="form-control" pattern="[a-zA-ZÀ-ÿ0-9º/\s]+" title="La dirección solo puede algunos caracteres como º o /" autoComplete="direccion" />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputDescripcion">Descripción</label>
-          <textarea type="text" name="descripcion" value={inputDescripcion} id="inputDescripcion" onInput={handleChange} className="form-control" pattern="[a-zA-Z\s]+" title="La descripción solo puede contener letras" autoComplete="descripcion"/>
+          <textarea type="text" name="descripcion" value={inputDescripcion} id="inputDescripcion" onInput={handleChange} className="form-control" pattern="[a-zA-ZÀ-ÿ\s]+" title="La descripción solo puede contener letras" autoComplete="descripcion"/>
         </div>
 
         <div className="form-group">

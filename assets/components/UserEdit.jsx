@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
-const myStorage3 = window.sessionStorage;
+const myStorageUserEdit = window.sessionStorage;
 
 const UserEdit = ({userGlobal, setUserGlobal}) => {
 
@@ -10,6 +10,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
   const [user, setUser] = useState({});
   const [soyAdmin, setSoyAdmin] = useState(false);
   const [urlEditUser, setUrlEditUser] = useState("");
+  const [currentUser, setCurrentUser] = useState(JSON.parse(myStorageUserEdit.getItem('loggedUser')));
 
   // estados form
   const [inputNombre, setInputNombre] = useState("");
@@ -46,7 +47,7 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
 
       setUrlEditUser(`/user/${params.id}/edit`)
 
-      if (data.roles.includes("ROLE_ADMIN")){
+      if (currentUser.roles.includes("ROLE_ADMIN")){
         setSoyAdmin(true);
       }
       
@@ -77,8 +78,6 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
       console.log(data);
 
       setUserGlobal(data);
-
-      myStorage3.setItem('loggedUser', JSON.stringify(data));
 
       setUser(data);
       
@@ -201,11 +200,11 @@ const UserEdit = ({userGlobal, setUserGlobal}) => {
           <div className='user-personal'>
             <div className="user-nombre">
               <h3>Nombre</h3>
-              <input type="text" value={inputNombre} onChange={handleChange} name="nombre" pattern="[a-zA-Z]{1,15}" title="El nombre solo puede contener letras"/>
+              <input type="text" value={inputNombre} onChange={handleChange} name="nombre" pattern="[a-zA-ZÀ-ÿ\s]+" title="El nombre solo puede contener letras"/>
             </div>
             <div className="user-apellidos">
               <h3>Apellidos</h3>
-              <input type="text" value={inputApellidos} onChange={handleChange} name="apellidos" pattern="[a-zA-Z]{1,15}" title="Los apellidos solo pueden contener letras"/>
+              <input type="text" value={inputApellidos} onChange={handleChange} name="apellidos" pattern="[a-zA-ZÀ-ÿ\s]+" title="Los apellidos solo pueden contener letras"/>
             </div>
           </div>
 

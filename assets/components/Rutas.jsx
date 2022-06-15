@@ -36,7 +36,6 @@ const Rutas = () => {
               });
               //console.log(response);
               const data = await response.json();
-              console.log(data);
 
               if (data.id) {
                 setUserGlobal(data);
@@ -64,7 +63,6 @@ const Rutas = () => {
 
     useEffect(() => {
 
-        console.log(userGlobal);
         if (myStorage.getItem('loggedUser') === null) {
             
             if (userGlobal) {

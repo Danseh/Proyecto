@@ -9,7 +9,7 @@ const Panel = ({userGlobal, setUserGlobal}) => {
   let url = "";
 
   const navigate = useNavigate();
-  const [user, setUser] = useState(JSON.parse(myStoragePanel.getItem('loggedUser')));
+  const [user, setUser] = useState({});
   const [piso, setPiso] = useState({});
 
   const getUserPiso = async (url) => {
@@ -22,6 +22,8 @@ const Panel = ({userGlobal, setUserGlobal}) => {
       });
       
       let data = await respuesta.json();
+
+      setUser(data);
 
       if (data.piso) {
       let respuestaPiso = await fetch(data.piso, {
@@ -69,15 +71,15 @@ const Panel = ({userGlobal, setUserGlobal}) => {
 
   return (
       <>
-      {userGlobal ?
+      {user ?
       <div className="panel-container">
             <ul>
               <li>
-                <h2>Bienvenido {userGlobal?.nombre}</h2>
+                <h2>Bienvenido {user.nombre}</h2>
                 
               </li>
               <li>
-                <p>{userGlobal.foto ? <img src={userGlobal.foto} alt="perfil" width="200px" height="200px"></img> :
+                <p>{user.foto ? <img src={user.foto} alt="perfil" width="200px" height="200px"></img> :
                 <img src="/img/perfilDefault.jpg" alt="perfilDefault" width="150px" height="150px"></img>}
                 </p>
               </li>

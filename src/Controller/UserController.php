@@ -50,7 +50,7 @@ class UserController extends AbstractController
         $entityManager->flush();
         
 
-        return $this->redirect('/user/'.$user->getId());
+        return $this->redirect('/user/'.$user->getId().'/editar');
     }
 
     #[Route('/user/{user}/edit', name: 'userEdit', methods: ['GET', 'POST'])]

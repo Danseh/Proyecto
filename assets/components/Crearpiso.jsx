@@ -20,22 +20,22 @@ const Crearpiso = () => {
         
         <div className="form-group">
           <label htmlFor="inputTitulo">Titulo </label>
-          <input type="text" name="titulo" id="inputTitulo" className="form-control" pattern="[a-zA-Z\s]+" title="El titulo solo puede contener letras" autoComplete="titulo" required autoFocus />
+          <input type="text" name="titulo" id="inputTitulo" className="form-control" pattern="[a-zA-ZÀ-ÿ\s]+" title="El titulo solo puede contener letras" autoComplete="titulo" required autoFocus />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Ciudad</label>
-          <input type="text" name="ciudad" id="inputCiudad" className="form-control" pattern="[a-zA-Z\s]+" title="La ciudad solo puede contener letras" autoComplete="ciudad" required />
+          <input type="text" name="ciudad" id="inputCiudad" className="form-control" pattern="[a-zA-ZÀ-ÿ\s]+" title="La ciudad solo puede contener letras" autoComplete="ciudad" required />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputCiudad">Dirección</label>
-          <input type="text" name="direccion" id="inputDireccion" className="form-control" pattern="[a-zA-Z0-9\s]+" title="La dirección solo puede contener algunos caracteres como º o /" autoComplete="direccion" required />
+          <input type="text" name="direccion" id="inputDireccion" className="form-control" pattern="[a-zA-ZÀ-ÿ0-9º/\s]+" title="La dirección solo puede contener algunos caracteres como º o /" autoComplete="direccion" required />
         </div>
 
         <div className="form-group">
           <label htmlFor="inputDescripcion">Descripción</label>
-          <textarea type="text" name="descripcion" id="inputDescripcion" className="form-control" pattern="[a-zA-Z\s]+" title="La descripción solo puede contener letras" autoComplete="descripcion" required />
+          <textarea type="text" name="descripcion" id="inputDescripcion" className="form-control" pattern="[a-zA-ZÀ-ÿ\s]+" title="La descripción solo puede contener letras" autoComplete="descripcion" required />
         </div>
 
         <div className="form-group">
